@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Weekly Business Intelligence</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18212f;
+      --muted: #5f6b7a;
+      --line: #d9e0e8;
+      --paper: #ffffff;
+      --surface: #f6f8fb;
+      --accent: #007c89;
+      --accent-dark: #005f68;
+      --risk: #b3261e;
+      --fresh: #0b7a3b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--ink);
+      font-family: "Segoe UI", "Noto Sans JP", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--accent-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page { max-width: 1120px; margin: 0 auto; padding: 28px 20px 56px; }
+    header {
+      border-top: 5px solid var(--accent);
+      background: var(--paper);
+      padding: 28px;
+      border-bottom: 1px solid var(--line);
+    }
+    .kicker {
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    h1 { margin: 6px 0 10px; font-size: 32px; line-height: 1.18; }
+    h2 { margin: 0 0 14px; font-size: 22px; line-height: 1.25; }
+    h3 { margin: 8px 0 10px; font-size: 18px; line-height: 1.34; }
+    p { margin: 0 0 12px; }
+    .summary-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 22px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .stat { background: var(--paper); padding: 14px; }
+    .stat strong { display: block; font-size: 24px; line-height: 1.2; }
+    .stat span { color: var(--muted); font-size: 13px; }
+    section { margin-top: 22px; }
+    .lead-story {
+      background: var(--paper);
+      padding: 26px;
+      border-left: 5px solid var(--accent);
+      border-bottom: 1px solid var(--line);
+    }
+    .section-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .lead-angle, .angle {
+      color: var(--ink);
+      font-weight: 650;
+    }
+    .lead-meta, .story-meta, .score-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      align-items: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .story-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 1px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .pill-new { border-color: #a6d8bd; color: var(--fresh); background: #edf8f1; }
+    .watchlist {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .watch-item {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 96px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .watch-item span { color: var(--muted); font-size: 13px; }
+    .watch-item strong { font-size: 28px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper);
+      border: 1px solid var(--line);
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    th { color: var(--muted); font-size: 12px; text-transform: uppercase; background: #f1f4f8; }
+    td small { display: block; color: var(--muted); margin-top: 4px; }
+    .next-actions {
+      background: #eef8f9;
+      border: 1px solid #b9dfe3;
+      border-radius: 8px;
+      padding: 18px;
+    }
+    @media (max-width: 760px) {
+      .page { padding: 16px 12px 40px; }
+      header { padding: 20px; }
+      h1 { font-size: 26px; }
+      .summary-bar, .grid, .watchlist { grid-template-columns: 1fr; }
+      th:nth-child(4), td:nth-child(4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="kicker">Weekly AI Market Brief</div>
+      <h1>AI Weekly Business Intelligence</h1>
+      <p>ビジネス活用に近いAIニュースを、公開情報源から自動収集して優先度順に整理しています。</p>
+      <div class="summary-bar">
+        <div class="stat"><strong>139</strong><span>Items scanned</span></div>
+        <div class="stat"><strong>30</strong><span>Items included</span></div>
+        <div class="stat"><strong>2</strong><span>New items</span></div>
+        <div class="stat"><strong>2026-06-16 21:25</strong><span>Generated JST</span></div>
+      </div>
+    </header>
+    
+        <section class="lead-story">
+          <div class="section-label">Top Story</div>
+          <h2><a href="https://techcrunch.com/2026/06/15/salesforce-acquires-ai-customer-service-platform-fin-for-3-6b/">Salesforce acquires AI customer service platform Fin for $3.6B</a></h2>
+          <p class="lead-angle">価格設定、法人導入、収益化への影響を確認。既存サービスの単価改善や営業資料への反映余地があります。</p>
+          <p>Salesforce says it wants to use Fin&#x27;s team and technology to improve Agentforce, its existing enterprise platform that businesses can use to build custom AI agents that automate tasks.</p>
+          <div class="lead-meta">
+            <span>TechCrunch AI</span>
+            <span>2026-06-15</span>
+            <span>Score 60</span>
+          </div>
+        </section>
+        
+    <section>
+      <h2>Executive Highlights</h2>
+      <div class="grid">
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 1</span>
+            <span>TechCrunch AI</span>
+            <span>2026-06-15</span>
+            <span class="pill pill-neutral">SEEN</span>
+          </div>
+          <h3><a href="https://techcrunch.com/2026/06/15/salesforce-acquires-ai-customer-service-platform-fin-for-3-6b/">Salesforce acquires AI customer service platform Fin for $3.6B</a></h3>
+          <p class="angle">価格設定、法人導入、収益化への影響を確認。既存サービスの単価改善や営業資料への反映余地があります。</p>
+          <p>Salesforce says it wants to use Fin&#x27;s team and technology to improve Agentforce, its existing enterprise platform that businesses can use to build custom AI agents that automate tasks.</p>
+          <div class="score-row">
+            <strong>Score 60</strong>
+            <span>source weight +16 / enterprise / business / customer / platform</span>
+          </div>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 2</span>
+            <span>The Decoder</span>
+            <span>2026-06-15</span>
+            <span class="pill pill-neutral">SEEN</span>
+          </div>
+          <h3><a href="https://the-decoder.com/microsoft-ceo-satya-nadella-warns-of-a-small-number-of-ai-systems-capturing-all-the-economic-returns/">Microsoft CEO Satya Nadella warns of &quot;a small number of AI systems capturing all the economic returns&quot;</a></h3>
+          <p class="angle">開発・提供コストに関わる技術基盤の変化。プロトタイプや既存プロダクトへの組み込み余地があります。</p>
+          <p>Microsoft CEO Satya Nadella wants companies to build &quot;token capital&quot; alongside human capital, meaning their own AI capabilities built on internal data and proprietary learning loops. Without it, he warns, a few large models could absorb the value of entire in...</p>
+          <div class="score-row">
+            <strong>Score 52</strong>
+            <span>source weight +12 / business / api / platform / model</span>
+          </div>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 3</span>
+            <span>AWS Machine Learning Blog</span>
+            <span>2026-06-09</span>
+            <span class="pill pill-neutral">SEEN</span>
+          </div>
+          <h3><a href="https://aws.amazon.com/blogs/machine-learning/unlocking-ai-flexibility-in-europe-a-guide-to-cross-region-inference-for-eu-data-processing-and-model-access/">Unlocking AI flexibility in Europe: A guide to cross-region inference for EU data processing and model access</a></h3>
+          <p class="angle">価格設定、法人導入、収益化への影響を確認。既存サービスの単価改善や営業資料への反映余地があります。</p>
+          <p>With access to the latest generative AI models and high-performance accelerated compute in high global demand, AWS customers need tools to take advantage of model availability and capacity across multiple AWS Regions, while still meeting their security and pr...</p>
+          <div class="score-row">
+            <strong>Score 52</strong>
+            <span>source weight +12 / customer / customers / security / privacy</span>
+          </div>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 4</span>
+            <span>OpenAI News</span>
+            <span>2026-06-11</span>
+            <span class="pill pill-neutral">SEEN</span>
+          </div>
+          <h3><a href="https://openai.com/index/openai-to-acquire-ona">OpenAI to acquire Ona</a></h3>
+          <p class="angle">価格設定、法人導入、収益化への影響を確認。既存サービスの単価改善や営業資料への反映余地があります。</p>
+          <p>OpenAI plans to acquire Ona to expand Codex with secure, persistent cloud environments, enabling long-running AI agents across enterprise workflows.</p>
+          <div class="score-row">
+            <strong>Score 51</strong>
+            <span>source weight +20 / enterprise / agent / agents / workflow</span>
+          </div>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 5</span>
+            <span>OpenAI News</span>
+            <span>2026-06-11</span>
+            <span class="pill pill-neutral">SEEN</span>
+          </div>
+          <h3><a href="https://openai.com/index/openai-on-oracle-cloud">Access OpenAI models and Codex through your Oracle cloud commitment</a></h3>
+          <p class="angle">価格設定、法人導入、収益化への影響を確認。既存サービスの単価改善や営業資料への反映余地があります。</p>
+          <p>Access OpenAI models and Codex through Oracle Cloud, using existing commitments to build and deploy AI with enterprise security and governance.</p>
+          <div class="score-row">
+            <strong>Score 51</strong>
+            <span>source weight +20 / enterprise / governance / security / model</span>
+          </div>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 6</span>
+            <span>OpenAI News</span>
+            <span>2026-06-15</span>
+            <span class="pill pill-neutral">SEEN</span>
+          </div>
+          <h3><a href="https://openai.com/index/introducing-openai-partner-network">Introducing the OpenAI Partner Network</a></h3>
+          <p class="angle">価格設定、法人導入、収益化への影響を確認。既存サービスの単価改善や営業資料への反映余地があります。</p>
+          <p>OpenAI launches the Partner Network, investing $150M to help global partners accelerate enterprise AI adoption, deployment, and transformation.</p>
+          <div class="score-row">
+            <strong>Score 49</strong>
+            <span>source weight +20 / enterprise / partners / launch / deployment</span>
+          </div>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 7</span>
+            <span>TechCrunch AI</span>
+            <span>2026-06-16</span>
+            <span class="pill pill-new">NEW</span>
+          </div>
+          <h3><a href="https://techcrunch.com/2026/06/15/malaysias-respond-io-raises-62-5m-eyes-acquisitions-in-north-america-and-europe/">Malaysia’s AI agent-powered messaging app Respond.io raises $62.5M, eyes acquisitions</a></h3>
+          <p class="angle">価格設定、法人導入、収益化への影響を確認。既存サービスの単価改善や営業資料への反映余地があります。</p>
+          <p>Respond.io, one of Malaysia startups to watch, uses AI agents to handle high volumes of customer inquiries and charges per convo, not per seat.</p>
+          <div class="score-row">
+            <strong>Score 48</strong>
+            <span>source weight +16 / customer / acquisition / agent / agents</span>
+          </div>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 8</span>
+            <span>TechCrunch AI</span>
+            <span>2026-06-15</span>
+            <span class="pill pill-neutral">SEEN</span>
+          </div>
+          <h3><a href="https://techcrunch.com/2026/06/15/ai-agents-are-becoming-employees-newcore-emerges-with-66m-to-give-them-identities/">As AI agents become employees, NewCore emerges with $66M to give them identities</a></h3>
+          <p class="angle">価格設定、法人導入、収益化への影響を確認。既存サービスの単価改善や営業資料への反映余地があります。</p>
+          <p>NewCore argues the next challenge in enterprise security will be managing AI agents, not people.</p>
+          <div class="score-row">
+            <strong>Score 48</strong>
+            <span>source weight +16 / enterprise / security / agent / agents</span>
+          </div>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 9</span>
+            <span>AWS Machine Learning Blog</span>
+            <span>2026-06-12</span>
+            <span class="pill pill-neutral">SEEN</span>
+          </div>
+          <h3><a href="https://aws.amazon.com/blogs/machine-learning/optimize-blueprint-extraction-accuracy-in-amazon-bedrock-data-automation/">Optimize blueprint extraction accuracy in Amazon Bedrock Data Automation</a></h3>
+          <p class="angle">業務自動化・社内オペレーション改善の候補。反復作業、問い合わせ対応、調査業務への転用可能性を見ます。</p>
+          <p>Blueprint instruction optimization is a BDA feature that automatically refines your extraction instructions to address this challenge directly. You provide three to ten example documents with expected values, and BDA refines your blueprint instructions to imp...</p>
+          <div class="score-row">
+            <strong>Score 48</strong>
+            <span>source weight +12 / api / automation / workflow / model</span>
+          </div>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 10</span>
+            <span>AWS Machine Learning Blog</span>
+            <span>2026-06-15</span>
+            <span class="pill pill-neutral">SEEN</span>
+          </div>
+          <h3><a href="https://aws.amazon.com/blogs/machine-learning/build-context-rich-research-agents-with-deep-agents-and-bedrock-agentcore/">Build context-rich research agents with Deep Agents and Bedrock AgentCore</a></h3>
+          <p class="angle">業務自動化・社内オペレーション改善の候補。反復作業、問い合わせ対応、調査業務への転用可能性を見ます。</p>
+          <p>In this post, you&#x27;ll build a competitive research agent that demonstrates this pattern end to end. This walkthrough targets developers building multi-step AI workflows who need isolated execution environments for their agents. In Part 2 of the notebook, you c...</p>
+          <div class="score-row">
+            <strong>Score 47</strong>
+            <span>source weight +12 / agent / agents / workflow / developer</span>
+          </div>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 11</span>
+            <span>MIT Technology Review AI</span>
+            <span>2026-06-11</span>
+            <span class="pill pill-neutral">SEEN</span>
+          </div>
+          <h3><a href="https://www.technologyreview.com/2026/06/11/1138794/google-deepmind-is-worried-about-what-happens-when-millions-of-agents-start-to-interact/">Google DeepMind is worried about what happens when millions of agents start to interact</a></h3>
+          <p class="angle">業務自動化・社内オペレーション改善の候補。反復作業、問い合わせ対応、調査業務への転用可能性を見ます。</p>
+          <p>Google DeepMind is funding research into the potential dangers of situations where millions of different AI agents interact with each other online. According to Rohin Shah, who directs the company’s AGI safety and alignment research, the mass-market arrival o...</p>
+          <div class="score-row">
+            <strong>Score 46</strong>
+            <span>source weight +12 / funding / agent / agents / market</span>
+          </div>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-meta">
+            <span>No. 12</span>
+            <span>TechCrunch AI</span>
+            <span>2026-06-16</span>
+            <span class="pill pill-neutral">SEEN</span>
+          </div>
+          <h3><a href="https://techcrunch.com/2026/06/15/cybersecurity-vets-protest-dangerous-us-government-ban-on-anthropics-most-powerful-models/">Cybersecurity vets protest ‘dangerous’ US government ban on Anthropic’s most powerful models</a></h3>
+          <p class="angle">リスク管理・契約・ガバナンス観点で重要。顧客向け説明や社内ルールの更新要否を確認します。</p>
+          <p>A group made up of dozens of cybersecurity experts urged the White House to remove export-control restrictions on Anthropic’s Fable and Mythos models, arguing that the order is going to limit the ability of cybersecurity defenders to secure their software and...</p>
+          <div class="score-row">
+            <strong>Score 42</strong>
+            <span>source weight +16 / security / product / model / models</span>
+          </div>
+        </article>
+        </div>
+    </section>
+    <section>
+      <h2>Business Priority Watchlist</h2>
+      <div class="watchlist">
+        <div class="watch-item">
+          <span>Product and platform launches</span>
+          <strong>12</strong>
+        </div>
+        
+
+        <div class="watch-item">
+          <span>Enterprise adoption and pricing</span>
+          <strong>9</strong>
+        </div>
+        
+
+        <div class="watch-item">
+          <span>Agents and automation</span>
+          <strong>16</strong>
+        </div>
+        
+
+        <div class="watch-item">
+          <span>Governance and risk</span>
+          <strong>6</strong>
+        </div>
+        </div>
+    </section>
+    <section>
+      <h2>All Ranked Items</h2>
+      <table>
+        <thead><tr><th>#</th><th>Story</th><th>Score</th><th>Signals</th></tr></thead>
+        <tbody>
+        <tr>
+          <td>1</td>
+          <td><a href="https://techcrunch.com/2026/06/15/salesforce-acquires-ai-customer-service-platform-fin-for-3-6b/">Salesforce acquires AI customer service platform Fin for $3.6B</a><small>TechCrunch AI / 2026-06-15</small></td>
+          <td>60</td>
+          <td>source weight +16, enterprise, business, customer, platform, agent</td>
+        </tr>
+        
+
+        <tr>
+          <td>2</td>
+          <td><a href="https://the-decoder.com/microsoft-ceo-satya-nadella-warns-of-a-small-number-of-ai-systems-capturing-all-the-economic-returns/">Microsoft CEO Satya Nadella warns of &quot;a small number of AI systems capturing all the economic returns&quot;</a><small>The Decoder / 2026-06-15</small></td>
+          <td>52</td>
+          <td>source weight +12, business, api, platform, model, models</td>
+        </tr>
+        
+
+        <tr>
+          <td>3</td>
+          <td><a href="https://aws.amazon.com/blogs/machine-learning/unlocking-ai-flexibility-in-europe-a-guide-to-cross-region-inference-for-eu-data-processing-and-model-access/">Unlocking AI flexibility in Europe: A guide to cross-region inference for EU data processing and model access</a><small>AWS Machine Learning Blog / 2026-06-09</small></td>
+          <td>52</td>
+          <td>source weight +12, customer, customers, security, privacy, model</td>
+        </tr>
+        
+
+        <tr>
+          <td>4</td>
+          <td><a href="https://openai.com/index/openai-to-acquire-ona">OpenAI to acquire Ona</a><small>OpenAI News / 2026-06-11</small></td>
+          <td>51</td>
+          <td>source weight +20, enterprise, agent, agents, workflow, cloud</td>
+        </tr>
+        
+
+        <tr>
+          <td>5</td>
+          <td><a href="https://openai.com/index/openai-on-oracle-cloud">Access OpenAI models and Codex through your Oracle cloud commitment</a><small>OpenAI News / 2026-06-11</small></td>
+          <td>51</td>
+          <td>source weight +20, enterprise, governance, security, model, models</td>
+        </tr>
+        
+
+        <tr>
+          <td>6</td>
+          <td><a href="https://openai.com/index/introducing-openai-partner-network">Introducing the OpenAI Partner Network</a><small>OpenAI News / 2026-06-15</small></td>
+          <td>49</td>
+          <td>source weight +20, enterprise, partners, launch, deployment, fresh</td>
+        </tr>
+        
+
+        <tr>
+          <td>7</td>
+          <td><a href="https://techcrunch.com/2026/06/15/malaysias-respond-io-raises-62-5m-eyes-acquisitions-in-north-america-and-europe/">Malaysia’s AI agent-powered messaging app Respond.io raises $62.5M, eyes acquisitions</a><small>TechCrunch AI / 2026-06-16</small></td>
+          <td>48</td>
+          <td>source weight +16, customer, acquisition, agent, agents, fresh</td>
+        </tr>
+        
+
+        <tr>
+          <td>8</td>
+          <td><a href="https://techcrunch.com/2026/06/15/ai-agents-are-becoming-employees-newcore-emerges-with-66m-to-give-them-identities/">As AI agents become employees, NewCore emerges with $66M to give them identities</a><small>TechCrunch AI / 2026-06-15</small></td>
+          <td>48</td>
+          <td>source weight +16, enterprise, security, agent, agents, fresh</td>
+        </tr>
+        
+
+        <tr>
+          <td>9</td>
+          <td><a href="https://aws.amazon.com/blogs/machine-learning/optimize-blueprint-extraction-accuracy-in-amazon-bedrock-data-automation/">Optimize blueprint extraction accuracy in Amazon Bedrock Data Automation</a><small>AWS Machine Learning Blog / 2026-06-12</small></td>
+          <td>48</td>
+          <td>source weight +12, api, automation, workflow, model, data</td>
+        </tr>
+        
+
+        <tr>
+          <td>10</td>
+          <td><a href="https://aws.amazon.com/blogs/machine-learning/build-context-rich-research-agents-with-deep-agents-and-bedrock-agentcore/">Build context-rich research agents with Deep Agents and Bedrock AgentCore</a><small>AWS Machine Learning Blog / 2026-06-15</small></td>
+          <td>47</td>
+          <td>source weight +12, agent, agents, workflow, developer, developers</td>
+        </tr>
+        
+
+        <tr>
+          <td>11</td>
+          <td><a href="https://www.technologyreview.com/2026/06/11/1138794/google-deepmind-is-worried-about-what-happens-when-millions-of-agents-start-to-interact/">Google DeepMind is worried about what happens when millions of agents start to interact</a><small>MIT Technology Review AI / 2026-06-11</small></td>
+          <td>46</td>
+          <td>source weight +12, funding, agent, agents, market, search</td>
+        </tr>
+        
+
+        <tr>
+          <td>12</td>
+          <td><a href="https://techcrunch.com/2026/06/15/cybersecurity-vets-protest-dangerous-us-government-ban-on-anthropics-most-powerful-models/">Cybersecurity vets protest ‘dangerous’ US government ban on Anthropic’s most powerful models</a><small>TechCrunch AI / 2026-06-16</small></td>
+          <td>42</td>
+          <td>source weight +16, security, product, model, models, fresh</td>
+        </tr>
+        
+
+        <tr>
+          <td>13</td>
+          <td><a href="https://openai.com/index/academy-courses-applying-ai-at-work">New OpenAI Academy courses for the next era of work</a><small>OpenAI News / 2026-06-12</small></td>
+          <td>42</td>
+          <td>source weight +20, agent, agents, workflow, recent</td>
+        </tr>
+        
+
+        <tr>
+          <td>14</td>
+          <td><a href="https://aws.amazon.com/blogs/machine-learning/building-supercharger-how-rocket-close-optimized-title-operations-with-agentic-ai/">Building Supercharger: How Rocket Close optimized title operations with agentic AI</a><small>AWS Machine Learning Blog / 2026-06-13</small></td>
+          <td>40</td>
+          <td>source weight +12, business, agent, agents, model, models</td>
+        </tr>
+        
+
+        <tr>
+          <td>15</td>
+          <td><a href="https://aws.amazon.com/blogs/machine-learning/stop-hand-tuning-kernels-how-neuron-agentic-development-accelerates-aws-trainium-optimizations/">Stop hand-tuning kernels: How Neuron Agentic Development accelerates AWS Trainium optimizations</a><small>AWS Machine Learning Blog / 2026-06-11</small></td>
+          <td>40</td>
+          <td>source weight +12, agent, agents, workflow, developer, developers</td>
+        </tr>
+        
+
+        <tr>
+          <td>16</td>
+          <td><a href="https://www.technologyreview.com/2026/06/09/1137830/learning-to-lead-in-a-hybrid-human-ai-enterprise/">Learning to lead in a hybrid human-AI enterprise</a><small>MIT Technology Review AI / 2026-06-09</small></td>
+          <td>40</td>
+          <td>source weight +12, enterprise, agent, agents, automation, recent</td>
+        </tr>
+        
+
+        <tr>
+          <td>17</td>
+          <td><a href="https://techcrunch.com/2026/06/15/the-us-governments-anthropic-models-ban-was-never-about-an-ai-jailbreak/">The US government’s Anthropic models ban was never about an AI jailbreak</a><small>TechCrunch AI / 2026-06-16</small></td>
+          <td>36</td>
+          <td>source weight +16, security, model, models, fresh</td>
+        </tr>
+        
+
+        <tr>
+          <td>18</td>
+          <td><a href="https://techcrunch.com/2026/06/13/amazon-ceo-reportedly-raised-anthropic-model-concerns-before-government-crackdown/">Amazon CEO reportedly raised Anthropic model concerns before government crackdown</a><small>TechCrunch AI / 2026-06-14</small></td>
+          <td>36</td>
+          <td>source weight +16, security, model, models, fresh</td>
+        </tr>
+        
+
+        <tr>
+          <td>19</td>
+          <td><a href="https://openai.com/index/nextdoor">How engineers at Nextdoor use Codex to build without limits</a><small>OpenAI News / 2026-06-09</small></td>
+          <td>36</td>
+          <td>source weight +20, platform, product, recent</td>
+        </tr>
+        
+
+        <tr>
+          <td>20</td>
+          <td><a href="https://aws.amazon.com/blogs/machine-learning/introducing-gemma-4-models-on-amazon-bedrock/">Introducing Gemma 4 models on Amazon Bedrock</a><small>AWS Machine Learning Blog / 2026-06-16</small></td>
+          <td>35</td>
+          <td>source weight +12, model, models, multimodal, reasoning, deployment</td>
+        </tr>
+        
+
+        <tr>
+          <td>21</td>
+          <td><a href="https://openai.com/index/economic-research-exchange">Introducing the OpenAI Economic Research Exchange</a><small>OpenAI News / 2026-06-08</small></td>
+          <td>35</td>
+          <td>source weight +20, product, launch, search</td>
+        </tr>
+        
+
+        <tr>
+          <td>22</td>
+          <td><a href="https://aws.amazon.com/blogs/machine-learning/evaluate-ai-agents-systematically-with-agent-evalkit/">Evaluate AI agents systematically with Agent-EvalKit</a><small>AWS Machine Learning Blog / 2026-06-12</small></td>
+          <td>34</td>
+          <td>source weight +12, agent, agents, search, evaluation, recent</td>
+        </tr>
+        
+
+        <tr>
+          <td>23</td>
+          <td><a href="https://www.anthropic.com/news/claude-corps">Jun 11, 2026 Introducing Claude Corps We’re launching Claude Corps, a national fellowship program for people early in their careers who are passionate about extending the benefits...</a><small>Anthropic News / date unknown</small></td>
+          <td>34</td>
+          <td>source weight +20, launch, product/news signal</td>
+        </tr>
+        
+
+        <tr>
+          <td>24</td>
+          <td><a href="https://openai.com/index/lseg">From data to decisions: how LSEG is scaling trusted AI</a><small>OpenAI News / 2026-06-10</small></td>
+          <td>33</td>
+          <td>source weight +20, business, data, recent</td>
+        </tr>
+        
+
+        <tr>
+          <td>25</td>
+          <td><a href="https://the-decoder.com/anthropic-backs-off-unpopular-billing-overhaul-as-price-war-with-openai-looms/">Anthropic backs off unpopular billing overhaul as price war with OpenAI looms</a><small>The Decoder / 2026-06-16</small></td>
+          <td>32</td>
+          <td>source weight +12, launch, agent, fresh</td>
+        </tr>
+        
+
+        <tr>
+          <td>26</td>
+          <td><a href="https://the-decoder.com/microsoft-researchs-mirage-gives-video-generation-a-persistent-spatial-memory-that-doesnt-forget-whats-around-the-corner/">Microsoft Research&#x27;s Mirage gives video generation a persistent spatial memory that doesn&#x27;t forget what&#x27;s around the corner</a><small>The Decoder / 2026-06-14</small></td>
+          <td>32</td>
+          <td>source weight +12, model, cloud, video, search, fresh</td>
+        </tr>
+        
+
+        <tr>
+          <td>27</td>
+          <td><a href="https://techcrunch.com/2026/06/12/anthropics-safety-warnings-may-have-just-backfired-the-government-has-pulled-the-plug-on-its-most-powerful-ai/">Anthropic’s safety warnings may have just backfired — the government has pulled the plug on its most powerful AI</a><small>TechCrunch AI / 2026-06-13</small></td>
+          <td>32</td>
+          <td>source weight +16, commercial, model, safety, recent</td>
+        </tr>
+        
+
+        <tr>
+          <td>28</td>
+          <td><a href="https://www.anthropic.com/news/claude-opus-4-8">May 28, 2026 Introducing Claude Opus 4.8 An upgrade to our Opus class of models, with stronger performance across coding, agentic tasks, and professional work, and the consistency...</a><small>Anthropic News / date unknown</small></td>
+          <td>32</td>
+          <td>source weight +20, agent, model, models</td>
+        </tr>
+        
+
+        <tr>
+          <td>29</td>
+          <td><a href="https://aws.amazon.com/blogs/machine-learning/build-an-ai-powered-equipment-repair-assistant-using-amazon-bedrock-agentcore/">Build an AI-Powered Equipment Repair Assistant Using Amazon Bedrock AgentCore</a><small>AWS Machine Learning Blog / 2026-06-11</small></td>
+          <td>31</td>
+          <td>source weight +12, agent, agents, model, recent</td>
+        </tr>
+        
+
+        <tr>
+          <td>30</td>
+          <td><a href="https://aws.amazon.com/blogs/machine-learning/hands-free-first-notice-of-loss-using-strands-agents-and-amazon-bedrock-agentcore-browser-tool-for-intelligent-claims-intake/">Hands-free first notice of loss: Using Strands Agents and Amazon Bedrock AgentCore Browser Tool for intelligent claims intake</a><small>AWS Machine Learning Blog / 2026-06-10</small></td>
+          <td>31</td>
+          <td>source weight +12, agent, agents, reasoning, recent</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    
+    <section class="next-actions">
+      <h2>Suggested Next Actions</h2>
+      <p>上位3件を営業・商品企画・開発観点で確認し、今週の提案や実験テーマに落とし込む。</p>
+      <p>規制・セキュリティ系の項目が出た場合は、契約書、利用規約、社内AI利用ルールへの影響を確認する。</p>
+      <p>APIやエージェント系の発表は、既存業務の自動化候補リストに追加する。</p>
+    </section>
+  </main>
+</body>
+</html>
