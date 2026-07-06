@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code 投資シミュレーター(ペーパートレード)</title>
+<meta name="description" content="Claude Codeが仮想資金・月1万円積立で毎営業日売買判断するペーパートレード実験。売買履歴と判断理由をSQLiteに記録">
+<link rel="stylesheet" href="assets/sim.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="bar">
+    <span class="logo">🤖 Claude Code <span class="accent">投資シミュレーター</span></span>
+    <nav class="top">
+      <a href="index.html" class="active">シミュレーター</a>
+      <a href="../stock-app/index.html">マーケット分析</a>
+      <a href="../index.html">AIニュース</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="meta-line" id="meta-line">読み込み中…</p>
+  <div id="banner"></div>
+
+  <!-- サマリー -->
+  <section>
+    <h2>実験サマリー</h2>
+    <p class="section-desc">
+      仮想資金・毎月1万円積立で、Claude Codeが毎営業日朝に売買を判断するペーパートレード実験です。
+      リアルマネーは一切使いません。手数料は実在の証券会社の料金体系
+      (SBI証券ゼロ革命・S株=0円、bitFlyer取引所現物=0.15%)を適用しています。
+    </p>
+    <div class="tiles" id="summary-tiles"></div>
+  </section>
+
+  <!-- 資産推移 -->
+  <section>
+    <h2>資産推移</h2>
+    <p class="section-desc">資産総額(青)と累計入金額=元本(グレー)。差が損益です。</p>
+    <div class="card">
+      <div class="chart-legend">
+        <span><span class="swatch" style="background:#3987e5"></span>資産総額</span>
+        <span><span class="swatch" style="background:#8a8f98"></span>累計入金(元本)</span>
+      </div>
+      <div id="chart-equity"></div>
+    </div>
+  </section>
+
+  <!-- 保有ポジション -->
+  <section>
+    <h2>保有ポジション</h2>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr>
+          <th>銘柄</th><th>数量</th><th>取得単価</th><th>直近終値</th><th>評価額</th><th>損益率</th>
+        </tr></thead>
+        <tbody id="positions-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 売買履歴 -->
+  <section>
+    <h2>売買履歴(Claudeの判断理由付き)</h2>
+    <p class="section-desc">
+      全取引はSQLite3データベースに記録されています:
+      <a href="db/paper.db" download>paper.db をダウンロード</a>
+    </p>
+    <div class="table-scroll">
+      <table class="data">
+        <thead><tr>
+          <th>基準日</th><th>売買</th><th>銘柄</th><th>数量</th><th>価格</th><th>手数料</th><th>判断理由</th>
+        </tr></thead>
+        <tbody id="trades-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 判断ログ -->
+  <section>
+    <h2>日次判断ログ</h2>
+    <p class="section-desc">売買しなかった日(HOLD)も含め、Claudeの判断を毎日記録します。クリックで全文を表示。</p>
+    <div id="decisions"></div>
+  </section>
+
+  <!-- ルール -->
+  <section>
+    <h2>シミュレーションのルール</h2>
+    <dl class="rules">
+      <dt>資金</dt>
+      <dd>仮想資金のみ。毎月最初の営業日に¥10,000を自動入金(現実的な少額積立を想定)。</dd>
+      <dt>売買判断</dt>
+      <dd>毎営業日朝(JST 9:00頃)、定時トリガーで起動したClaude Codeセッションが最新の終値・テクニカル指標を分析して判断。判断理由は必ずDBに記録。</dd>
+      <dt>執行モデル</dt>
+      <dd>直近終値で約定。単元未満株(S株)の約定は現実にも1日数回の寄付タイミングのため、日次終値モデルは実際のS株積立とほぼ同じ粒度。</dd>
+      <dt>手数料(実在の料金体系)</dt>
+      <dd>国内株式・ETF: 0円(SBI証券「ゼロ革命」+S株。報告書の全面電子交付が条件) / ビットコイン: 約定金額の0.15%(bitFlyer Lightning 取引所現物、30日取引量50BTC未満ティア)。</dd>
+      <dt>対象(12銘柄)</dt>
+      <dd id="universe-list">読み込み中…</dd>
+      <dt>データ</dt>
+      <dd>GitHub Actionsが毎営業日朝、yfinanceで日足終値を取得しSQLiteへ保存。</dd>
+    </dl>
+  </section>
+
+  <footer class="site">
+    <p>本ページは教育・研究目的の実験であり、投資助言ではありません。売買はすべて仮想であり、実際の金融商品の取引は行っていません。手数料等の情報は2026年7月調査時点のものです。</p>
+    <p>チャート描画: <a href="https://github.com/tradingview/lightweight-charts">TradingView lightweight-charts</a> (Apache-2.0)</p>
+  </footer>
+</div>
+
+<script src="../stock-app/assets/lightweight-charts.standalone.production.js"></script>
+<script src="assets/sim.js"></script>
+</body>
+</html>

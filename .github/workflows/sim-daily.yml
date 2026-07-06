@@ -1,0 +1,49 @@
+# 投資シミュレーター: 日次バッチ
+# 毎営業日朝JSTに実市場価格を取得し、月次入金・時価評価・UI用JSON出力を行う。
+# 売買判断はこのワークフローでは行わない(Claude Codeの定時セッションが担当)。
+name: Sim daily batch
+
+on:
+  schedule:
+    # JST 07:45 月-金 (前日の東京終値 + 当朝のNY終値が揃うタイミング) = UTC 22:45 日-木
+    - cron: "45 22 * * 0-4"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sim-daily
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: stock-app/pipeline/requirements.txt
+
+      - name: Install dependencies
+        run: pip install yfinance pandas
+
+      - name: Run daily batch (fetch prices / deposit / mark / export)
+        run: cd sim/engine && python daily.py
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sim/db sim/data
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "シミュレーター日次バッチ $(date -u +%Y-%m-%d)"
+          git push

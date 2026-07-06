@@ -1,0 +1,240 @@
+/* 世界株式マーケット・ダッシュボード — ダークテーマ(単一テーマにコミット) */
+:root {
+  --bg: #0d0f13;
+  --surface: #16181d;
+  --surface-2: #1d2026;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f2f3f5;
+  --text-2: #b8bcc4;
+  --muted: #8a8f98;
+  --grid: #262a31;
+  --up: #0ca30c;
+  --down: #d03b3b;
+  --up-text: #2eb82e;
+  --down-text: #e66767;
+  --s1: #3987e5;  /* 系列1: 青 */
+  --s2: #199e70;  /* 系列2: アクア */
+  --s3: #c98500;  /* 系列3: 黄 */
+  --s4: #9085e9;  /* 系列4: 紫 */
+  --baseline: #8a8f98;
+  --warn-bg: #3a2b10;
+  --warn-border: #c98500;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+a { color: var(--s1); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px 60px; }
+
+/* ---- ヘッダー ---- */
+header.site {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky; top: 0; z-index: 30;
+}
+header.site .bar {
+  max-width: 1180px; margin: 0 auto; padding: 12px 20px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.logo { font-size: 17px; font-weight: 700; letter-spacing: 0.02em; }
+.logo .accent { color: var(--s1); }
+nav.top { display: flex; gap: 14px; margin-left: auto; font-size: 13px; }
+nav.top a { color: var(--text-2); }
+nav.top a.active { color: var(--text); font-weight: 600; }
+
+.meta-line { color: var(--muted); font-size: 12px; margin: 14px 0 0; }
+.badge {
+  display: inline-block; padding: 1px 8px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; vertical-align: 1px;
+}
+.badge.live { background: rgba(12, 163, 12, 0.15); color: var(--up-text); }
+.badge.demo { background: rgba(201, 133, 0, 0.18); color: #e6b45c; }
+
+.banner-demo {
+  margin: 16px 0 0; padding: 10px 14px; border-radius: var(--radius);
+  background: var(--warn-bg); border: 1px solid var(--warn-border);
+  color: #f0d9ae; font-size: 13px;
+}
+
+/* ---- セクション ---- */
+section { margin-top: 36px; }
+h2 {
+  font-size: 18px; margin: 0 0 4px; font-weight: 700;
+  display: flex; align-items: baseline; gap: 10px;
+}
+h2 .oss {
+  font-size: 11px; font-weight: 500; color: var(--muted);
+}
+.section-desc { color: var(--text-2); font-size: 13px; margin: 0 0 14px; }
+
+/* ---- 統計タイル(市場概況) ---- */
+.tiles {
+  display: grid; gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+}
+.tile {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px;
+  cursor: pointer; transition: border-color 0.15s;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.tile:hover, .tile:focus-visible { border-color: var(--s1); outline: none; }
+.tile .label { color: var(--text-2); font-size: 12px; }
+.tile .row { display: flex; align-items: baseline; gap: 8px; }
+.tile .value { font-size: 20px; font-weight: 600; }
+.tile .delta { font-size: 12px; font-weight: 600; }
+.delta.up { color: var(--up-text); }
+.delta.down { color: var(--down-text); }
+.delta.flat { color: var(--muted); }
+.tile svg.spark { margin-top: 6px; width: 100%; height: 30px; display: block; }
+
+/* ---- フィルタ行 ---- */
+.filter-row {
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  margin: 0 0 14px;
+}
+.chip {
+  padding: 4px 12px; border-radius: 999px; font-size: 12.5px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text-2); cursor: pointer;
+}
+.chip:hover { color: var(--text); }
+.chip.on { background: var(--s1); border-color: var(--s1); color: #fff; font-weight: 600; }
+select.sym {
+  background: var(--surface-2); color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 10px; font-size: 13px; max-width: 320px;
+}
+
+/* ---- チャートカード ---- */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px;
+}
+.chart-legend {
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+  font-size: 12px; color: var(--text-2); min-height: 20px; margin-bottom: 6px;
+}
+.chart-legend .key {
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.chart-legend .swatch {
+  width: 10px; height: 10px; border-radius: 3px; display: inline-block;
+}
+.chart-legend .swatch.line { height: 3px; border-radius: 2px; width: 14px; }
+.chart-legend b { color: var(--text); font-weight: 600; }
+.pane { position: relative; }
+.pane + .pane { margin-top: 6px; border-top: 1px solid var(--border); padding-top: 6px; }
+.pane .pane-title {
+  position: absolute; top: 4px; left: 6px; z-index: 5;
+  font-size: 11px; color: var(--muted);
+}
+#chart-main { height: 360px; }
+#chart-rsi { height: 110px; }
+#chart-macd { height: 110px; }
+#chart-equity { height: 260px; }
+.toggles { display: flex; gap: 10px; flex-wrap: wrap; font-size: 12px; margin-bottom: 8px; }
+.toggles label { display: inline-flex; gap: 5px; align-items: center; color: var(--text-2); cursor: pointer; }
+
+/* ---- テーブル(スクリーナー) ---- */
+.table-scroll { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+table.screener {
+  border-collapse: collapse; width: 100%; min-width: 980px;
+  background: var(--surface); font-size: 12.5px;
+}
+table.screener th, table.screener td {
+  padding: 7px 10px; text-align: right; white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+table.screener th {
+  color: var(--muted); font-weight: 600; cursor: pointer; user-select: none;
+  position: sticky; top: 0; background: var(--surface-2); z-index: 2;
+}
+table.screener th.sorted { color: var(--text); }
+table.screener th:first-child, table.screener td:first-child { text-align: left; }
+table.screener td.num { font-variant-numeric: tabular-nums; }
+table.screener tbody tr { cursor: pointer; }
+table.screener tbody tr:hover { background: var(--surface-2); }
+table.screener tbody tr.sel { background: rgba(57, 135, 229, 0.12); }
+.name-cell .nm { color: var(--text); font-weight: 600; }
+.name-cell .sym-code { color: var(--muted); font-size: 11px; }
+.pill {
+  display: inline-block; padding: 0 7px; border-radius: 999px;
+  font-size: 11px; font-weight: 600;
+}
+.pill.oversold { background: rgba(12, 163, 12, 0.15); color: var(--up-text); }
+.pill.overbought { background: rgba(208, 59, 59, 0.15); color: var(--down-text); }
+.pill.neutral { background: var(--surface-2); color: var(--muted); }
+.pill.gc { background: rgba(57, 135, 229, 0.15); color: #6ea8ef; }
+
+/* ---- バックテスト ---- */
+.bt-grid {
+  display: grid; gap: 10px; margin-bottom: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.bt-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px;
+}
+.bt-card h3 {
+  margin: 0 0 8px; font-size: 13.5px; font-weight: 700;
+  display: flex; align-items: center; gap: 7px;
+}
+.bt-card .stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; font-size: 12px;
+}
+.bt-card .stat-grid dt { color: var(--muted); }
+.bt-card .stat-grid dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; color: var(--text); }
+.bt-card .headline { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+
+/* ---- レジストリ ---- */
+.search-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+input.search {
+  flex: 1; min-width: 220px; background: var(--surface-2); color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px; padding: 7px 12px; font-size: 13px;
+}
+.repo-grid {
+  display: grid; gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+.repo-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.repo-card .top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.repo-card .rname { font-weight: 700; font-size: 13.5px; }
+.repo-card .cat {
+  font-size: 10.5px; color: var(--muted); border: 1px solid var(--border);
+  padding: 0 7px; border-radius: 999px;
+}
+.repo-card .used {
+  font-size: 10.5px; background: rgba(57, 135, 229, 0.18); color: #6ea8ef;
+  padding: 0 7px; border-radius: 999px; font-weight: 600;
+}
+.repo-card .desc { color: var(--text-2); font-size: 12.5px; flex: 1; }
+.repo-card .foot { color: var(--muted); font-size: 11px; display: flex; gap: 12px; }
+.count-note { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+
+/* ---- フッター ---- */
+footer.site {
+  margin-top: 48px; border-top: 1px solid var(--border);
+  color: var(--muted); font-size: 12px; padding-top: 18px;
+}
+footer.site h3 { font-size: 12.5px; color: var(--text-2); margin: 0 0 6px; }
+footer.site p { margin: 0 0 10px; }
+
+@media (max-width: 640px) {
+  #chart-main { height: 280px; }
+  .tiles { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+}

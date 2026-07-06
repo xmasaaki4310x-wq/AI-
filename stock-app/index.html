@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界株式マーケット・ダッシュボード | Global Stock Analyzer</title>
+<meta name="description" content="世界の株価指数・個別株・FX・暗号資産・商品を、100超のオープンソース金融ライブラリの知見で分析するダッシュボード">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="bar">
+    <span class="logo">🌐 Global Stock <span class="accent">Analyzer</span></span>
+    <nav class="top">
+      <a href="index.html" class="active">ダッシュボード</a>
+      <a href="repos.html">OSSレジストリ (132)</a>
+      <a href="../sim/index.html">シミュレーター</a>
+      <a href="../index.html">AIニュース</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="meta-line" id="meta-line">読み込み中…</p>
+  <div id="banner"></div>
+
+  <!-- 市場概況 -->
+  <section id="overview">
+    <h2>世界市場の概況 <span class="oss">データ取得: yfinance</span></h2>
+    <p class="section-desc">主要株価指数の終値・前日比・直近30日の推移。タイルをクリックするとチャートに表示します。</p>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <!-- フィルタ(この行が以下の全セクションを絞り込む) -->
+  <section id="chart-section">
+    <h2>チャート分析 <span class="oss">指標計算: stockstats / 描画: TradingView lightweight-charts</span></h2>
+    <p class="section-desc">ローソク足+出来高、移動平均線・ボリンジャーバンド、RSI・MACD。ドラッグでスクロール、ホイールでズームできます。</p>
+    <div class="filter-row">
+      <span id="chips"></span>
+      <select class="sym" id="sym-select" aria-label="銘柄を選択"></select>
+    </div>
+    <div class="card">
+      <div class="chart-legend">
+        <b id="chart-title"></b>
+        <span id="readout-ohlc"></span>
+      </div>
+      <div class="toggles">
+        <label><input type="checkbox" id="tgl-sma20" checked> SMA20</label>
+        <label><input type="checkbox" id="tgl-sma50" checked> SMA50</label>
+        <label><input type="checkbox" id="tgl-sma200" checked> SMA200</label>
+        <label><input type="checkbox" id="tgl-bb"> ボリンジャーバンド</label>
+      </div>
+      <div class="chart-legend" id="readout-sma"></div>
+      <div class="pane"><div id="chart-main"></div></div>
+      <div class="pane"><span class="pane-title" id="readout-rsi">RSI(14)</span><div id="chart-rsi"></div></div>
+      <div class="pane"><span class="pane-title" id="readout-macd">MACD(12,26,9)</span><div id="chart-macd"></div></div>
+    </div>
+  </section>
+
+  <!-- スクリーナー -->
+  <section id="screener-section">
+    <h2>スクリーナー <span class="oss">指標計算: stockstats</span></h2>
+    <p class="section-desc">列見出しをクリックでソート、行をクリックでチャート表示。RSI30以下=売られすぎ・70以上=買われすぎ、GC=直近20日以内にゴールデンクロス発生。この表は上のチャートのテーブルビューを兼ねます。</p>
+    <div class="table-scroll">
+      <table class="screener">
+        <thead><tr id="screener-head"></tr></thead>
+        <tbody id="screener-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- バックテスト -->
+  <section id="backtest-section">
+    <h2>戦略バックテスト <span class="oss">エンジン: backtesting.py / 指標: quantstats</span></h2>
+    <p class="section-desc" id="bt-title"></p>
+    <div class="bt-grid" id="bt-cards"></div>
+    <div class="card">
+      <div class="chart-legend">
+        <span class="key"><span class="swatch line" style="background:#3987e5"></span>SMAクロス (20/50)</span>
+        <span class="key"><span class="swatch line" style="background:#199e70"></span>RSI逆張り (30/70)</span>
+        <span class="key"><span class="swatch line" style="background:#c98500"></span>ボリンジャー・ブレイクアウト</span>
+        <span class="key"><span class="swatch line" style="background:#8a8f98"></span>バイ&ホールド</span>
+      </div>
+      <div class="pane"><div id="chart-equity"></div></div>
+    </div>
+  </section>
+
+  <!-- OSSレジストリへの導線 -->
+  <section id="registry-section">
+    <h2>集約したオープンソース・レジストリ</h2>
+    <p class="section-desc">
+      世界中の株取引・分析系OSSリポジトリを調査・分類し、実在検証のうえ収録しました。
+      うち5つ(yfinance・stockstats・quantstats・backtesting.py・lightweight-charts)は本アプリが実際に使用しています。
+    </p>
+    <p class="count-note" id="repo-summary">読み込み中…</p>
+    <p><a href="repos.html">→ 132リポジトリのカタログを見る</a></p>
+  </section>
+
+  <footer class="site">
+    <h3>免責事項</h3>
+    <p>本サイトは教育・研究目的のデモであり、投資助言ではありません。表示されるデータ・バックテスト結果に基づく投資判断は自己責任で行ってください。過去のパフォーマンスは将来の成果を保証しません。</p>
+    <h3>クレジット</h3>
+    <p>
+      チャート描画: <a href="https://github.com/tradingview/lightweight-charts">TradingView lightweight-charts</a> (Apache-2.0・同梱) /
+      データ取得: <a href="https://github.com/ranaroussi/yfinance">yfinance</a> /
+      テクニカル指標: <a href="https://github.com/jealous/stockstats">stockstats</a> /
+      バックテスト: <a href="https://github.com/kernc/backtesting.py">backtesting.py</a> /
+      評価指標: <a href="https://github.com/ranaroussi/quantstats">quantstats</a>
+    </p>
+  </footer>
+</div>
+
+<script src="assets/lightweight-charts.standalone.production.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

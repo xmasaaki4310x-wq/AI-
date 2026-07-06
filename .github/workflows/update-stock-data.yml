@@ -1,0 +1,50 @@
+# 株式データの定期自動更新
+# yfinanceで実データを取得し、指標計算・バックテストを再実行して
+# stock-app/data/ を更新・コミットする。
+# 初回実行後、サイトの「デモデータ」表示は「実データ」に切り替わる。
+name: Update stock data
+
+on:
+  schedule:
+    # JST 07:15(米国市場クローズ後)に平日実行 = UTC 22:15 前日
+    - cron: "15 22 * * 0-4"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-stock-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: stock-app/pipeline/requirements.txt
+
+      - name: Install pipeline dependencies
+        run: pip install -r stock-app/pipeline/requirements.txt
+
+      - name: Fetch live data & rebuild analytics
+        run: python stock-app/pipeline/build.py --live
+
+      - name: Commit & push updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add stock-app/data
+          if git diff --cached --quiet; then
+            echo "変更なし - コミットをスキップ"
+            exit 0
+          fi
+          git commit -m "株式データ自動更新 $(date -u +%Y-%m-%d)"
+          git push
