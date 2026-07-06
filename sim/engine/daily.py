@@ -18,18 +18,31 @@ MONTHLY_DEPOSIT = 10_000  # 円/月
 
 
 def fetch_prices(con) -> int:
+    import time
+
     import pandas as pd
     import yfinance as yf
+
+    def download(sym):
+        # レート制限(YFRateLimitError)対策: 1回リトライ
+        for attempt in (1, 2):
+            try:
+                df = yf.download(sym, period="500d", interval="1d",
+                                 auto_adjust=True, progress=False)
+            except Exception as e:
+                print(f"  NG {sym} (試行{attempt}): {e}")
+                df = None
+            if df is not None and not df.empty:
+                return df
+            if attempt == 1:
+                time.sleep(15)
+        return None
 
     symbols = [r["symbol"] for r in con.execute("SELECT symbol FROM instruments")]
     n = 0
     for sym in symbols:
-        try:
-            df = yf.download(sym, period="500d", interval="1d",
-                             auto_adjust=True, progress=False)
-        except Exception as e:
-            print(f"  NG {sym}: {e}")
-            continue
+        df = download(sym)
+        time.sleep(1.0)  # レート制限対策の取得間隔
         if df is None or df.empty:
             print(f"  NG {sym}: データなし")
             continue

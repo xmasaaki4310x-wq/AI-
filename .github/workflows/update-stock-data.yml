@@ -47,4 +47,6 @@ jobs:
             exit 0
           fi
           git commit -m "株式データ自動更新 $(date -u +%Y-%m-%d)"
+          # 他ワークフローと同時実行した場合の競合対策
+          git pull --rebase origin gh-pages
           git push
