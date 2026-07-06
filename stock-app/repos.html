@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSSレジストリ — 世界の株取引・分析リポジトリ132選</title>
+<meta name="description" content="世界中の株取引・分析が得意なGitHubリポジトリを収集・分類・実在検証したカタログ">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="bar">
+    <span class="logo">🌐 Global Stock <span class="accent">Analyzer</span></span>
+    <nav class="top">
+      <a href="index.html">ダッシュボード</a>
+      <a href="repos.html" class="active">OSSレジストリ (132)</a>
+      <a href="../index.html">AIニュース</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section>
+    <h2>世界の株取引・分析OSSレジストリ</h2>
+    <p class="section-desc">
+      世界中で使われている株取引・金融分析のオープンソースリポジトリを調査し、
+      10カテゴリに分類して収録したカタログです。全リポジトリはGitHub上での実在を自動検証済み
+      (検証ツール: <code>pipeline/verify_registry.py</code>)。
+      <span class="badge live">使用中</span> は本アプリが実際に組み込んでいるリポジトリです。
+    </p>
+    <div class="search-row">
+      <input class="search" id="q" type="search" placeholder="リポジトリ名・説明で検索…" aria-label="検索">
+    </div>
+    <div class="filter-row" id="cat-chips"></div>
+    <p class="count-note" id="count-note"></p>
+    <div class="repo-grid" id="grid"></div>
+  </section>
+
+  <footer class="site">
+    <p>各リポジトリのライセンス・詳細はリンク先のGitHubページを確認してください。収録情報は調査時点のものです。</p>
+  </footer>
+</div>
+
+<script src="assets/registry.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# 分析パイプラインが実際に使用するOSSライブラリ
+yfinance>=1.0        # 市場データ取得 (ranaroussi/yfinance)
+stockstats>=0.6      # テクニカル指標 (jealous/stockstats)
+quantstats>=0.0.62   # リスク調整後指標 (ranaroussi/quantstats)
+backtesting>=0.6     # バックテストエンジン (kernc/backtesting.py)
+pandas>=2.0
+numpy>=1.26

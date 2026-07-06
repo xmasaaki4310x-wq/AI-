@@ -1,0 +1,1211 @@
+{
+ "generated_at": "2026-07-06T15:27:19+00:00",
+ "categories": {
+  "data": "市場データ取得",
+  "ta": "テクニカル分析",
+  "backtest": "バックテスト・戦略検証",
+  "portfolio": "ポートフォリオ最適化・リスク管理",
+  "ml": "機械学習・AIトレード",
+  "forecast": "時系列予測",
+  "bot": "自動売買・取引プラットフォーム",
+  "viz": "チャート・可視化",
+  "fundamental": "ファンダメンタル・スクリーニング",
+  "infra": "データ基盤・知識集"
+ },
+ "count": 132,
+ "repos": [
+  {
+   "owner": "cuemacro",
+   "repo": "finmarketpy",
+   "category": "backtest",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "マクロ系トレード戦略の分析・バックテストライブラリ。FX・金利に強い。",
+   "url": "https://github.com/cuemacro/finmarketpy"
+  },
+  {
+   "owner": "enzoampil",
+   "repo": "fastquant",
+   "category": "backtest",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "数行でバックテストができる初心者向けラッパー。backtraderを簡単に使える。",
+   "url": "https://github.com/enzoampil/fastquant"
+  },
+  {
+   "owner": "gbeced",
+   "repo": "pyalgotrade",
+   "category": "backtest",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "イベント駆動型アルゴトレードライブラリの草分け。ドキュメントが充実。",
+   "url": "https://github.com/gbeced/pyalgotrade"
+  },
+  {
+   "owner": "kernc",
+   "repo": "backtesting.py",
+   "category": "backtest",
+   "lang": "Python",
+   "license": "AGPL-3.0",
+   "used_in_app": true,
+   "desc_ja": "軽量・高速・美しい可視化が売りのバックテストライブラリ。本アプリの戦略検証エンジンとして使用。",
+   "url": "https://github.com/kernc/backtesting.py"
+  },
+  {
+   "owner": "mementum",
+   "repo": "backtrader",
+   "category": "backtest",
+   "lang": "Python",
+   "license": "GPL-3.0",
+   "desc_ja": "最も有名なPythonバックテストフレームワークの一つ。イベント駆動型で実弾取引にも対応。",
+   "url": "https://github.com/mementum/backtrader"
+  },
+  {
+   "owner": "mhallsmoore",
+   "repo": "qstrader",
+   "category": "backtest",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "QuantStart発のポートフォリオ構築・バックテストフレームワーク。教材としても人気。",
+   "url": "https://github.com/mhallsmoore/qstrader"
+  },
+  {
+   "owner": "nautechsystems",
+   "repo": "nautilus_trader",
+   "category": "backtest",
+   "lang": "Rust/Python",
+   "license": "LGPL-3.0",
+   "desc_ja": "Rustコアの高性能アルゴトレードプラットフォーム。ナノ秒精度のイベント駆動エンジン。",
+   "url": "https://github.com/nautechsystems/nautilus_trader"
+  },
+  {
+   "owner": "pmorissette",
+   "repo": "bt",
+   "category": "backtest",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "ツリー構造で戦略を組み合わせられる柔軟なポートフォリオバックテストフレームワーク。",
+   "url": "https://github.com/pmorissette/bt"
+  },
+  {
+   "owner": "polakowo",
+   "repo": "vectorbt",
+   "category": "backtest",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "NumPy+Numbaによる超高速ベクトル化バックテスト。数千パターンの一括検証が得意。",
+   "url": "https://github.com/polakowo/vectorbt"
+  },
+  {
+   "owner": "QuantConnect",
+   "repo": "Lean",
+   "category": "backtest",
+   "lang": "C#",
+   "license": "Apache-2.0",
+   "desc_ja": "QuantConnectのオープンソースエンジン。株式・FX・先物・暗号資産を横断してバックテスト・実取引。",
+   "url": "https://github.com/QuantConnect/Lean"
+  },
+  {
+   "owner": "quantopian",
+   "repo": "zipline",
+   "category": "backtest",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "元Quantopianのイベント駆動バックテストエンジン。アルゴトレードの歴史的名作。",
+   "url": "https://github.com/quantopian/zipline"
+  },
+  {
+   "owner": "robcarver17",
+   "repo": "pysystemtrade",
+   "category": "backtest",
+   "lang": "Python",
+   "license": "GPL-3.0",
+   "desc_ja": "『Systematic Trading』著者Rob Carverによる先物システムトレードの完全実装。",
+   "url": "https://github.com/robcarver17/pysystemtrade"
+  },
+  {
+   "owner": "stefan-jansen",
+   "repo": "zipline-reloaded",
+   "category": "backtest",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "ziplineを現代のPython環境向けにメンテナンスし続けるフォーク版。",
+   "url": "https://github.com/stefan-jansen/zipline-reloaded"
+  },
+  {
+   "owner": "askmike",
+   "repo": "gekko",
+   "category": "bot",
+   "lang": "JavaScript",
+   "license": "MIT",
+   "desc_ja": "初期の暗号資産Botの代表作(開発終了)。Botアーキテクチャの教材として今も参照される。",
+   "url": "https://github.com/askmike/gekko"
+  },
+  {
+   "owner": "bbfamily",
+   "repo": "abu",
+   "category": "bot",
+   "lang": "Python",
+   "license": "GPL-3.0",
+   "desc_ja": "書籍『量化交易之路』の阿布量化システム。ML統合の中国語圏定番教材。",
+   "url": "https://github.com/bbfamily/abu"
+  },
+  {
+   "owner": "blankly-finance",
+   "repo": "blankly",
+   "category": "bot",
+   "lang": "Python",
+   "license": "LGPL-3.0",
+   "desc_ja": "同じコードで株式・暗号資産・FXを取引できる統一トレードフレームワーク。",
+   "url": "https://github.com/blankly-finance/blankly"
+  },
+  {
+   "owner": "ccxt",
+   "repo": "ccxt",
+   "category": "bot",
+   "lang": "JavaScript/Python",
+   "license": "MIT",
+   "desc_ja": "100以上の取引所APIを統一インターフェースで扱う業界標準ライブラリ。",
+   "url": "https://github.com/ccxt/ccxt"
+  },
+  {
+   "owner": "chrisleekr",
+   "repo": "binance-trading-bot",
+   "category": "bot",
+   "lang": "JavaScript",
+   "license": "MIT",
+   "desc_ja": "グリッド取引対応のBinance自動売買Bot。Web UIでモニタリング可能。",
+   "url": "https://github.com/chrisleekr/binance-trading-bot"
+  },
+  {
+   "owner": "DeviaVir",
+   "repo": "zenbot",
+   "category": "bot",
+   "lang": "JavaScript",
+   "license": "MIT",
+   "desc_ja": "コマンドライン駆動の暗号資産Bot(開発終了)。遺伝的アルゴリズムによる最適化が特徴だった。",
+   "url": "https://github.com/DeviaVir/zenbot"
+  },
+  {
+   "owner": "Drakkar-Software",
+   "repo": "OctoBot",
+   "category": "bot",
+   "lang": "Python",
+   "license": "GPL-3.0",
+   "desc_ja": "ノーコードでも使える暗号資産取引Bot。Web UIと拡張エコシステムが特徴。",
+   "url": "https://github.com/Drakkar-Software/OctoBot"
+  },
+  {
+   "owner": "freqtrade",
+   "repo": "freqtrade",
+   "category": "bot",
+   "lang": "Python",
+   "license": "GPL-3.0",
+   "desc_ja": "最も人気のある暗号資産取引Bot。戦略作成・バックテスト・機械学習最適化まで完備。",
+   "url": "https://github.com/freqtrade/freqtrade"
+  },
+  {
+   "owner": "freqtrade",
+   "repo": "freqtrade-strategies",
+   "category": "bot",
+   "lang": "Python",
+   "license": "GPL-3.0",
+   "desc_ja": "freqtrade公式の戦略サンプル集。Bot戦略の書き方を学ぶ最短ルート。",
+   "url": "https://github.com/freqtrade/freqtrade-strategies"
+  },
+  {
+   "owner": "hummingbot",
+   "repo": "hummingbot",
+   "category": "bot",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "マーケットメイキング特化の取引Bot。140以上の取引所コネクタを持つ。",
+   "url": "https://github.com/hummingbot/hummingbot"
+  },
+  {
+   "owner": "hummingbot",
+   "repo": "gateway",
+   "category": "bot",
+   "lang": "TypeScript",
+   "license": "Apache-2.0",
+   "desc_ja": "DEX(分散型取引所)接続用のミドルウェア。DeFiトレードの橋渡し。",
+   "url": "https://github.com/hummingbot/gateway"
+  },
+  {
+   "owner": "jesse-ai",
+   "repo": "jesse",
+   "category": "bot",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "研究からライブ取引までを簡潔なPythonで書ける暗号資産アルゴトレードフレームワーク。",
+   "url": "https://github.com/jesse-ai/jesse"
+  },
+  {
+   "owner": "kieran-mackle",
+   "repo": "AutoTrader",
+   "category": "bot",
+   "lang": "Python",
+   "license": "GPL-3.0",
+   "desc_ja": "戦略開発から自動売買までを支援するプラットフォーム。詳細なドキュメントが魅力。",
+   "url": "https://github.com/kieran-mackle/AutoTrader"
+  },
+  {
+   "owner": "Lumiwealth",
+   "repo": "lumibot",
+   "category": "bot",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "バックテストと実取引を同じ戦略コードで実行できるトレードフレームワーク。",
+   "url": "https://github.com/Lumiwealth/lumibot"
+  },
+  {
+   "owner": "shidenggui",
+   "repo": "easytrader",
+   "category": "bot",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "中国の証券口座への自動発注ライブラリ。プログラマティック取引の入口。",
+   "url": "https://github.com/shidenggui/easytrader"
+  },
+  {
+   "owner": "StockSharp",
+   "repo": "StockSharp",
+   "category": "bot",
+   "lang": "C#",
+   "license": "Apache-2.0",
+   "desc_ja": ".NET製の本格トレーディングプラットフォーム。世界中の取引所・ブローカーに接続。",
+   "url": "https://github.com/StockSharp/StockSharp"
+  },
+  {
+   "owner": "vnpy",
+   "repo": "vnpy",
+   "category": "bot",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "中国で絶大な人気を誇る総合トレードプラットフォーム。株式・先物・オプション対応。",
+   "url": "https://github.com/vnpy/vnpy"
+  },
+  {
+   "owner": "wondertrader",
+   "repo": "wondertrader",
+   "category": "bot",
+   "lang": "C++",
+   "license": "MIT",
+   "desc_ja": "C++コアの高频取引対応フレームワーク。中国先物市場で実績。",
+   "url": "https://github.com/wondertrader/wondertrader"
+  },
+  {
+   "owner": "yutiansut",
+   "repo": "QUANTAXIS",
+   "category": "bot",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "データ取得から取引執行まで揃った中国発の総合量的投資ソリューション。",
+   "url": "https://github.com/yutiansut/QUANTAXIS"
+  },
+  {
+   "owner": "zvtvz",
+   "repo": "zvt",
+   "category": "bot",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "拡張可能な量的投資フレームワーク。ファクター計算・記録システムが特徴。",
+   "url": "https://github.com/zvtvz/zvt"
+  },
+  {
+   "owner": "akfamily",
+   "repo": "akshare",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "中国発の総合金融データライブラリ。A株・港股・先物・マクロ指標など圧倒的なカバレッジ。",
+   "url": "https://github.com/akfamily/akshare"
+  },
+  {
+   "owner": "alpacahq",
+   "repo": "alpaca-trade-api-python",
+   "category": "data",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "手数料無料の米国株API Alpacaの公式SDK。データ取得と発注の両方に対応。",
+   "url": "https://github.com/alpacahq/alpaca-trade-api-python"
+  },
+  {
+   "owner": "alvarobartt",
+   "repo": "investpy",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "Investing.comから世界40カ国以上の株式・ETF・債券データを取得。新興国市場に強い。",
+   "url": "https://github.com/alvarobartt/investpy"
+  },
+  {
+   "owner": "atreadw1492",
+   "repo": "yahoo_fin",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "Yahoo Financeから株価・財務・オプションデータをスクレイピングで取得。",
+   "url": "https://github.com/atreadw1492/yahoo_fin"
+  },
+  {
+   "owner": "bmoscon",
+   "repo": "cryptofeed",
+   "category": "data",
+   "lang": "Python",
+   "license": "GPL-3.0",
+   "desc_ja": "暗号資産取引所のWebSocketフィードを統一形式で受信する高性能ライブラリ。",
+   "url": "https://github.com/bmoscon/cryptofeed"
+  },
+  {
+   "owner": "cuemacro",
+   "repo": "findatapy",
+   "category": "data",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "Bloomberg・Quandl・Yahoo等を統一インターフェースで扱う市場データ取得フレームワーク。",
+   "url": "https://github.com/cuemacro/findatapy"
+  },
+  {
+   "owner": "dpguthrie",
+   "repo": "yahooquery",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "Yahoo Financeの非公式APIラッパー。財務諸表やオプションデータまで幅広く取得できる。",
+   "url": "https://github.com/dpguthrie/yahooquery"
+  },
+  {
+   "owner": "erdewit",
+   "repo": "ib_insync",
+   "category": "data",
+   "lang": "Python",
+   "license": "BSD-2",
+   "desc_ja": "Interactive Brokers APIを同期的に扱いやすくした人気ラッパー。世界中の市場に発注可能。",
+   "url": "https://github.com/erdewit/ib_insync"
+  },
+  {
+   "owner": "FinanceData",
+   "repo": "FinanceDataReader",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "韓国発のデータリーダー。韓国株・米国株・指数・FXを統一APIで取得。",
+   "url": "https://github.com/FinanceData/FinanceDataReader"
+  },
+  {
+   "owner": "gerrymanoim",
+   "repo": "exchange_calendars",
+   "category": "data",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "世界50以上の取引所の営業日・取引時間カレンダー。バックテストの土台。",
+   "url": "https://github.com/gerrymanoim/exchange_calendars"
+  },
+  {
+   "owner": "J-Quants",
+   "repo": "jquants-api-client-python",
+   "category": "data",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "JPX公式の日本株データAPI「J-Quants」の公式Pythonクライアント。日本株分析の必携。",
+   "url": "https://github.com/J-Quants/jquants-api-client-python"
+  },
+  {
+   "owner": "JerBouma",
+   "repo": "FinanceDatabase",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "30万件超の銘柄・ETF・ファンドのメタデータベース。銘柄探索(ユニバース構築)に便利。",
+   "url": "https://github.com/JerBouma/FinanceDatabase"
+  },
+  {
+   "owner": "mcdallas",
+   "repo": "wallstreet",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "株価とオプションのリアルタイムデータをシンプルに取得する軽量ライブラリ。",
+   "url": "https://github.com/mcdallas/wallstreet"
+  },
+  {
+   "owner": "Micro-sheep",
+   "repo": "efinance",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "東方財富のデータを使った中国株・基金・先物のデータ取得ツール。",
+   "url": "https://github.com/Micro-sheep/efinance"
+  },
+  {
+   "owner": "polygon-io",
+   "repo": "client-python",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "米国市場のリアルタイム/履歴データAPI Polygon.ioの公式クライアント。",
+   "url": "https://github.com/polygon-io/client-python"
+  },
+  {
+   "owner": "pydata",
+   "repo": "pandas-datareader",
+   "category": "data",
+   "lang": "Python",
+   "license": "BSD-3",
+   "desc_ja": "FRED・World Bank・Stooqなど多数のソースからpandas DataFrameへ直接データを読み込む老舗ライブラリ。",
+   "url": "https://github.com/pydata/pandas-datareader"
+  },
+  {
+   "owner": "quantopian",
+   "repo": "trading_calendars",
+   "category": "data",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "元Quantopianの取引所カレンダーライブラリ(exchange_calendarsの前身)。",
+   "url": "https://github.com/quantopian/trading_calendars"
+  },
+  {
+   "owner": "ranaroussi",
+   "repo": "yfinance",
+   "category": "data",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "used_in_app": true,
+   "desc_ja": "Yahoo Financeから世界中の株価・指数・FX・暗号資産の履歴データを取得する定番ライブラリ。本アプリのデータ取得の主役。",
+   "url": "https://github.com/ranaroussi/yfinance"
+  },
+  {
+   "owner": "RomelTorres",
+   "repo": "alpha_vantage",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "Alpha Vantage APIのPythonラッパー。株価・FX・テクニカル指標をAPIで取得。",
+   "url": "https://github.com/RomelTorres/alpha_vantage"
+  },
+  {
+   "owner": "rsheftel",
+   "repo": "pandas_market_calendars",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "取引所カレンダーをpandasで扱うライブラリ。祝日・短縮取引日にも対応。",
+   "url": "https://github.com/rsheftel/pandas_market_calendars"
+  },
+  {
+   "owner": "shidenggui",
+   "repo": "easyquotation",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "中国株のリアルタイム株価を高速取得するライブラリ。",
+   "url": "https://github.com/shidenggui/easyquotation"
+  },
+  {
+   "owner": "twelvedata",
+   "repo": "twelvedata-python",
+   "category": "data",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "世界の株式・FX・暗号資産をカバーするTwelve Data APIの公式クライアント。",
+   "url": "https://github.com/twelvedata/twelvedata-python"
+  },
+  {
+   "owner": "waditu",
+   "repo": "tushare",
+   "category": "data",
+   "lang": "Python",
+   "license": "BSD-3",
+   "desc_ja": "中国株データ取得の老舗。A株の日足・財務・マクロデータを提供。",
+   "url": "https://github.com/waditu/tushare"
+  },
+  {
+   "owner": "awslabs",
+   "repo": "gluonts",
+   "category": "forecast",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "AWS製の確率的時系列予測ツールキット。DeepARの本家実装。",
+   "url": "https://github.com/awslabs/gluonts"
+  },
+  {
+   "owner": "blue-yonder",
+   "repo": "tsfresh",
+   "category": "forecast",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "時系列から数百の特徴量を自動抽出。MLモデルの入力作りに絶大な威力。",
+   "url": "https://github.com/blue-yonder/tsfresh"
+  },
+  {
+   "owner": "facebook",
+   "repo": "prophet",
+   "category": "forecast",
+   "lang": "Python/R",
+   "license": "MIT",
+   "desc_ja": "Meta製の時系列予測ライブラリ。トレンド+季節性の分解で直感的に使える。",
+   "url": "https://github.com/facebook/prophet"
+  },
+  {
+   "owner": "google",
+   "repo": "temporian",
+   "category": "forecast",
+   "lang": "Python/C++",
+   "license": "Apache-2.0",
+   "desc_ja": "Google製の時系列前処理特化ライブラリ。安全で高速なイベントデータ処理。",
+   "url": "https://github.com/google/temporian"
+  },
+  {
+   "owner": "Nixtla",
+   "repo": "statsforecast",
+   "category": "forecast",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "ARIMA・ETS等の統計的予測を超高速実装。数百万系列のスケールに対応。",
+   "url": "https://github.com/Nixtla/statsforecast"
+  },
+  {
+   "owner": "Nixtla",
+   "repo": "neuralforecast",
+   "category": "forecast",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "N-BEATS・NHITS・Transformer系など最新ニューラル時系列予測モデルの実装集。",
+   "url": "https://github.com/Nixtla/neuralforecast"
+  },
+  {
+   "owner": "ourownstory",
+   "repo": "neural_prophet",
+   "category": "forecast",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "ProphetをPyTorchで拡張したハイブリッド時系列予測フレームワーク。",
+   "url": "https://github.com/ourownstory/neural_prophet"
+  },
+  {
+   "owner": "sktime",
+   "repo": "sktime",
+   "category": "forecast",
+   "lang": "Python",
+   "license": "BSD-3",
+   "desc_ja": "scikit-learn流のAPIで時系列分析(予測・分類)を統一するフレームワーク。",
+   "url": "https://github.com/sktime/sktime"
+  },
+  {
+   "owner": "sktime",
+   "repo": "pytorch-forecasting",
+   "category": "forecast",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "Temporal Fusion Transformer等を備えたPyTorch時系列予測ライブラリ。",
+   "url": "https://github.com/sktime/pytorch-forecasting"
+  },
+  {
+   "owner": "TDAmeritrade",
+   "repo": "stumpy",
+   "category": "forecast",
+   "lang": "Python",
+   "license": "BSD-3",
+   "desc_ja": "Matrix Profileによる時系列パターン発見ライブラリ。類似チャートパターン検索に使える。",
+   "url": "https://github.com/TDAmeritrade/stumpy"
+  },
+  {
+   "owner": "unit8co",
+   "repo": "darts",
+   "category": "forecast",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "古典手法から深層学習まで統一APIで扱える時系列予測の総合ライブラリ。",
+   "url": "https://github.com/unit8co/darts"
+  },
+  {
+   "owner": "dgunning",
+   "repo": "edgartools",
+   "category": "fundamental",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "SEC EDGARデータを美しいAPIで扱う現代的ライブラリ。財務諸表をDataFrameで取得。",
+   "url": "https://github.com/dgunning/edgartools"
+  },
+  {
+   "owner": "JerBouma",
+   "repo": "FinanceToolkit",
+   "category": "fundamental",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "100種類以上の財務指標・レシオを透明性の高い計算式で算出するツールキット。",
+   "url": "https://github.com/JerBouma/FinanceToolkit"
+  },
+  {
+   "owner": "lit26",
+   "repo": "finvizfinance",
+   "category": "fundamental",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "スクリーニングサイトFinvizの情報をPythonで取得。銘柄スクリーナー構築に。",
+   "url": "https://github.com/lit26/finvizfinance"
+  },
+  {
+   "owner": "sec-edgar",
+   "repo": "sec-edgar",
+   "category": "fundamental",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "SEC EDGARから有価証券報告書(10-K等)を一括ダウンロードするツール。",
+   "url": "https://github.com/sec-edgar/sec-edgar"
+  },
+  {
+   "owner": "shner-elmo",
+   "repo": "TradingView-Screener",
+   "category": "fundamental",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "TradingViewのスクリーナーAPIで3000以上のフィールドから銘柄抽出。",
+   "url": "https://github.com/shner-elmo/TradingView-Screener"
+  },
+  {
+   "owner": "SimFin",
+   "repo": "simfin",
+   "category": "fundamental",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "財務諸表データを無料で提供するSimFinの公式API。ファンダメンタル分析の入口。",
+   "url": "https://github.com/SimFin/simfin"
+  },
+  {
+   "owner": "firmai",
+   "repo": "financial-machine-learning",
+   "category": "infra",
+   "lang": "-",
+   "license": "-",
+   "desc_ja": "金融機械学習のツール・論文・実装を網羅した巨大キュレーションリスト。",
+   "url": "https://github.com/firmai/financial-machine-learning"
+  },
+  {
+   "owner": "je-suis-tm",
+   "repo": "quant-trading",
+   "category": "infra",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "MACD・ペアトレード・オシレーター等、古典戦略の実装を学べる人気リポジトリ。",
+   "url": "https://github.com/je-suis-tm/quant-trading"
+  },
+  {
+   "owner": "LastAncientOne",
+   "repo": "Stock_Analysis_For_Quant",
+   "category": "infra",
+   "lang": "Jupyter",
+   "license": "MIT",
+   "desc_ja": "Excel・Python・R・PowerBIなど多言語での株式分析ノートブック集。",
+   "url": "https://github.com/LastAncientOne/Stock_Analysis_For_Quant"
+  },
+  {
+   "owner": "letianzj",
+   "repo": "QuantResearch",
+   "category": "infra",
+   "lang": "Jupyter",
+   "license": "MIT",
+   "desc_ja": "バックテスト・機械学習・強化学習のノートブックと実装解説の研究リポジトリ。",
+   "url": "https://github.com/letianzj/QuantResearch"
+  },
+  {
+   "owner": "man-group",
+   "repo": "arctic",
+   "category": "infra",
+   "lang": "Python",
+   "license": "LGPL-2.1",
+   "desc_ja": "Man Group製の時系列データベース。MongoDBベースで市場データを高速格納。",
+   "url": "https://github.com/man-group/arctic"
+  },
+  {
+   "owner": "man-group",
+   "repo": "ArcticDB",
+   "category": "infra",
+   "lang": "C++/Python",
+   "license": "BSL-1.1",
+   "desc_ja": "arcticの後継。DataFrame特化の超高速組み込みデータベース。",
+   "url": "https://github.com/man-group/ArcticDB"
+  },
+  {
+   "owner": "man-group",
+   "repo": "notebooker",
+   "category": "infra",
+   "lang": "Python",
+   "license": "AGPL-3.0",
+   "desc_ja": "Jupyterノートブックを定期実行しWebレポート化。分析の定常運用に。",
+   "url": "https://github.com/man-group/notebooker"
+  },
+  {
+   "owner": "OpenBB-finance",
+   "repo": "OpenBB",
+   "category": "infra",
+   "lang": "Python",
+   "license": "AGPL-3.0",
+   "desc_ja": "オープンソースの投資リサーチプラットフォーム。Bloomberg端末のOSS版を目指す代表格。",
+   "url": "https://github.com/OpenBB-finance/OpenBB"
+  },
+  {
+   "owner": "PacktPublishing",
+   "repo": "Python-for-Finance-Cookbook",
+   "category": "infra",
+   "lang": "Jupyter",
+   "license": "MIT",
+   "desc_ja": "書籍『Python for Finance Cookbook』公式コード。金融データ分析レシピ集。",
+   "url": "https://github.com/PacktPublishing/Python-for-Finance-Cookbook"
+  },
+  {
+   "owner": "paperswithbacktest",
+   "repo": "awesome-systematic-trading",
+   "category": "infra",
+   "lang": "-",
+   "license": "-",
+   "desc_ja": "システマティックトレードの戦略・論文・データソースの大型キュレーションリスト。",
+   "url": "https://github.com/paperswithbacktest/awesome-systematic-trading"
+  },
+  {
+   "owner": "quantopian",
+   "repo": "research_public",
+   "category": "infra",
+   "lang": "Jupyter",
+   "license": "Apache-2.0",
+   "desc_ja": "元Quantopianの公開リサーチノートブック集。クオンツ研究の教材宝庫。",
+   "url": "https://github.com/quantopian/research_public"
+  },
+  {
+   "owner": "ranaroussi",
+   "repo": "pystore",
+   "category": "infra",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "Parquetベースの軽量時系列データストア。ローカルで市場データを効率管理。",
+   "url": "https://github.com/ranaroussi/pystore"
+  },
+  {
+   "owner": "wilsonfreitas",
+   "repo": "awesome-quant",
+   "category": "infra",
+   "lang": "-",
+   "license": "-",
+   "desc_ja": "量的金融のライブラリ・ツール・書籍を網羅する最重要キュレーションリスト。本レジストリの原点。",
+   "url": "https://github.com/wilsonfreitas/awesome-quant"
+  },
+  {
+   "owner": "AI4Finance-Foundation",
+   "repo": "FinRL",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "金融強化学習のフレームワーク代表格。株式取引をRL環境として定式化。",
+   "url": "https://github.com/AI4Finance-Foundation/FinRL"
+  },
+  {
+   "owner": "AI4Finance-Foundation",
+   "repo": "FinGPT",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "金融特化のオープンソースLLMプロジェクト。センチメント分析やニュース解析に。",
+   "url": "https://github.com/AI4Finance-Foundation/FinGPT"
+  },
+  {
+   "owner": "AI4Finance-Foundation",
+   "repo": "FinRobot",
+   "category": "ml",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "LLMエージェントによる金融分析の自動化プラットフォーム。アナリストAIを目指す。",
+   "url": "https://github.com/AI4Finance-Foundation/FinRobot"
+  },
+  {
+   "owner": "AI4Finance-Foundation",
+   "repo": "FinRL-Trading",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "FinRLの実トレード応用例集。強化学習戦略の実装サンプル。",
+   "url": "https://github.com/AI4Finance-Foundation/FinRL-Trading"
+  },
+  {
+   "owner": "AminHP",
+   "repo": "gym-anytrading",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "OpenAI Gym互換のトレード強化学習環境。FX・株式に対応したシンプルな実験場。",
+   "url": "https://github.com/AminHP/gym-anytrading"
+  },
+  {
+   "owner": "borisbanushev",
+   "repo": "stockpredictionai",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "GAN+強化学習で株価予測に挑む野心的なノートブック。金融MLの人気教材。",
+   "url": "https://github.com/borisbanushev/stockpredictionai"
+  },
+  {
+   "owner": "hudson-and-thames",
+   "repo": "mlfinlab",
+   "category": "ml",
+   "lang": "Python",
+   "license": "BSD-3",
+   "desc_ja": "『Advances in Financial Machine Learning』の手法を実装した金融ML定番ライブラリ。",
+   "url": "https://github.com/hudson-and-thames/mlfinlab"
+  },
+  {
+   "owner": "huseinzol05",
+   "repo": "Stock-Prediction-Models",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "LSTM・GAN・強化学習など30以上の株価予測モデルの実装集。",
+   "url": "https://github.com/huseinzol05/Stock-Prediction-Models"
+  },
+  {
+   "owner": "microsoft",
+   "repo": "qlib",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "Microsoft製AI量的投資プラットフォーム。データ処理からモデル学習・戦略まで一気通貫。",
+   "url": "https://github.com/microsoft/qlib"
+  },
+  {
+   "owner": "pipiku915",
+   "repo": "FinMem-LLM-StockTrading",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "記憶機構を持つLLMトレードエージェントFinMemの実装。LLM×投資の研究実装。",
+   "url": "https://github.com/pipiku915/FinMem-LLM-StockTrading"
+  },
+  {
+   "owner": "ProsusAI",
+   "repo": "finBERT",
+   "category": "ml",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "金融ニュースのセンチメント分析に特化したBERTモデル。金融NLPの標準。",
+   "url": "https://github.com/ProsusAI/finBERT"
+  },
+  {
+   "owner": "ScottfreeLLC",
+   "repo": "AlphaPy",
+   "category": "ml",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "スポーツ予測から株式まで扱う機械学習パイプラインフレームワーク。",
+   "url": "https://github.com/ScottfreeLLC/AlphaPy"
+  },
+  {
+   "owner": "stefan-jansen",
+   "repo": "machine-learning-for-trading",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "書籍『Machine Learning for Trading』の公式コード。金融MLの百科事典的リポジトリ。",
+   "url": "https://github.com/stefan-jansen/machine-learning-for-trading"
+  },
+  {
+   "owner": "TauricResearch",
+   "repo": "TradingAgents",
+   "category": "ml",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "マルチエージェントLLMによるトレード判断フレームワーク。アナリスト・トレーダー・リスク管理AIが協調。",
+   "url": "https://github.com/TauricResearch/TradingAgents"
+  },
+  {
+   "owner": "tensortrade-org",
+   "repo": "tensortrade",
+   "category": "ml",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "強化学習トレードエージェントの構築・訓練・評価フレームワーク。",
+   "url": "https://github.com/tensortrade-org/tensortrade"
+  },
+  {
+   "owner": "TradeMaster-NTU",
+   "repo": "TradeMaster",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "南洋理工大発の強化学習トレード総合プラットフォーム。8種のRLアルゴリズム搭載。",
+   "url": "https://github.com/TradeMaster-NTU/TradeMaster"
+  },
+  {
+   "owner": "virattt",
+   "repo": "ai-hedge-fund",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "複数のAIエージェント(バフェット役・アナリスト役等)が議論して投資判断するAIヘッジファンドの実験場。",
+   "url": "https://github.com/virattt/ai-hedge-fund"
+  },
+  {
+   "owner": "Yvictor",
+   "repo": "TradingGym",
+   "category": "ml",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "トレード戦略の訓練用Gym環境。ティックデータでのRL学習に対応。",
+   "url": "https://github.com/Yvictor/TradingGym"
+  },
+  {
+   "owner": "cvxgrp",
+   "repo": "cvxportfolio",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "スタンフォードBoyd研究室発の凸最適化ベースのポートフォリオ運用フレームワーク。",
+   "url": "https://github.com/cvxgrp/cvxportfolio"
+  },
+  {
+   "owner": "dcajasn",
+   "repo": "Riskfolio-Lib",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "BSD-3",
+   "desc_ja": "20種類以上のリスク尺度に対応した本格ポートフォリオ最適化ライブラリ。",
+   "url": "https://github.com/dcajasn/Riskfolio-Lib"
+  },
+  {
+   "owner": "domokane",
+   "repo": "FinancePy",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "GPL-3.0",
+   "desc_ja": "債券・オプション・クレジット等のデリバティブ評価を純Pythonで実装。",
+   "url": "https://github.com/domokane/FinancePy"
+  },
+  {
+   "owner": "goldmansachs",
+   "repo": "gs-quant",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "ゴールドマン・サックス公式の定量金融ツールキット。デリバティブ評価・リスク分析。",
+   "url": "https://github.com/goldmansachs/gs-quant"
+  },
+  {
+   "owner": "google",
+   "repo": "tf-quant-finance",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "Google製のTensorFlowベース定量金融ライブラリ。GPUでモンテカルロ・PDE計算。",
+   "url": "https://github.com/google/tf-quant-finance"
+  },
+  {
+   "owner": "lballabio",
+   "repo": "QuantLib",
+   "category": "portfolio",
+   "lang": "C++",
+   "license": "BSD-3",
+   "desc_ja": "デリバティブ評価・金利モデルの世界標準C++ライブラリ。金融工学の金字塔。",
+   "url": "https://github.com/lballabio/QuantLib"
+  },
+  {
+   "owner": "Marigold",
+   "repo": "universal-portfolios",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "オンラインポートフォリオ選択アルゴリズム(Universal Portfolio等)の実装集。",
+   "url": "https://github.com/Marigold/universal-portfolios"
+  },
+  {
+   "owner": "pmorissette",
+   "repo": "ffn",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "リターン分析・リスク指標計算の金融関数集。btの計算エンジンでもある。",
+   "url": "https://github.com/pmorissette/ffn"
+  },
+  {
+   "owner": "quantopian",
+   "repo": "pyfolio",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "元Quantopianのポートフォリオ・リスク分析ライブラリ。ティアシートが有名。",
+   "url": "https://github.com/quantopian/pyfolio"
+  },
+  {
+   "owner": "quantopian",
+   "repo": "alphalens",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "アルファファクターの予測力を検証する分析ツール。ファクター投資の定番。",
+   "url": "https://github.com/quantopian/alphalens"
+  },
+  {
+   "owner": "quantopian",
+   "repo": "empyrical",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "desc_ja": "金融リスク・パフォーマンス指標の計算関数集。pyfolioの計算コア。",
+   "url": "https://github.com/quantopian/empyrical"
+  },
+  {
+   "owner": "ranaroussi",
+   "repo": "quantstats",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "Apache-2.0",
+   "used_in_app": true,
+   "desc_ja": "シャープレシオ・最大ドローダウン等を一括算出しHTMLレポート化。本アプリの戦略評価指標に使用。",
+   "url": "https://github.com/ranaroussi/quantstats"
+  },
+  {
+   "owner": "robertmartin8",
+   "repo": "PyPortfolioOpt",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "平均分散最適化・Black-Litterman・階層リスクパリティを実装した最適化の定番。",
+   "url": "https://github.com/robertmartin8/PyPortfolioOpt"
+  },
+  {
+   "owner": "skfolio",
+   "repo": "skfolio",
+   "category": "portfolio",
+   "lang": "Python",
+   "license": "BSD-3",
+   "desc_ja": "scikit-learn互換APIのポートフォリオ最適化。交差検証やパイプラインが使える新鋭。",
+   "url": "https://github.com/skfolio/skfolio"
+  },
+  {
+   "owner": "bukosabino",
+   "repo": "ta",
+   "category": "ta",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "pandasベースの純Pythonテクニカル分析ライブラリ。40以上の指標をDataFrameに一括追加。",
+   "url": "https://github.com/bukosabino/ta"
+  },
+  {
+   "owner": "cinar",
+   "repo": "indicator",
+   "category": "ta",
+   "lang": "Go",
+   "license": "AGPL-3.0",
+   "desc_ja": "Go言語製のテクニカル指標・戦略ライブラリ。バックテスト機能も内蔵。",
+   "url": "https://github.com/cinar/indicator"
+  },
+  {
+   "owner": "greyblake",
+   "repo": "ta-rs",
+   "category": "ta",
+   "lang": "Rust",
+   "license": "MIT",
+   "desc_ja": "Rust製のテクニカル分析ライブラリ。高速性と型安全性が特徴。",
+   "url": "https://github.com/greyblake/ta-rs"
+  },
+  {
+   "owner": "jealous",
+   "repo": "stockstats",
+   "category": "ta",
+   "lang": "Python",
+   "license": "BSD-3",
+   "used_in_app": true,
+   "desc_ja": "DataFrameに['rsi_14']のように書くだけで指標を遅延計算するユニークなライブラリ。本アプリの指標計算に使用。",
+   "url": "https://github.com/jealous/stockstats"
+  },
+  {
+   "owner": "nardew",
+   "repo": "talipp",
+   "category": "ta",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "インクリメンタル計算に特化したテクニカル指標ライブラリ。リアルタイム処理で全再計算が不要。",
+   "url": "https://github.com/nardew/talipp"
+  },
+  {
+   "owner": "peerchemist",
+   "repo": "finta",
+   "category": "ta",
+   "lang": "Python",
+   "license": "LGPL-3.0",
+   "desc_ja": "80以上のテクニカル指標をシンプルなAPIで提供する軽量ライブラリ。",
+   "url": "https://github.com/peerchemist/finta"
+  },
+  {
+   "owner": "TA-Lib",
+   "repo": "ta-lib-python",
+   "category": "ta",
+   "lang": "Python/C",
+   "license": "BSD-2",
+   "desc_ja": "150種類以上のテクニカル指標を高速計算する業界標準ライブラリTA-LibのPythonバインディング。",
+   "url": "https://github.com/TA-Lib/ta-lib-python"
+  },
+  {
+   "owner": "TulipCharts",
+   "repo": "tulipindicators",
+   "category": "ta",
+   "lang": "C",
+   "license": "LGPL-3.0",
+   "desc_ja": "100以上の指標をC言語で実装した高速テクニカル指標ライブラリ。多言語バインディングあり。",
+   "url": "https://github.com/TulipCharts/tulipindicators"
+  },
+  {
+   "owner": "andredumas",
+   "repo": "techan.js",
+   "category": "viz",
+   "lang": "JavaScript",
+   "license": "MIT",
+   "desc_ja": "D3.jsベースの金融チャートライブラリ。テクニカル指標描画をブラウザで。",
+   "url": "https://github.com/andredumas/techan.js"
+  },
+  {
+   "owner": "highfestiva",
+   "repo": "finplot",
+   "category": "viz",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "高速・高機能な金融プロット専用ライブラリ。大量データでもサクサク動く。",
+   "url": "https://github.com/highfestiva/finplot"
+  },
+  {
+   "owner": "man-group",
+   "repo": "dtale",
+   "category": "viz",
+   "lang": "Python",
+   "license": "LGPL-2.1",
+   "desc_ja": "pandas DataFrameをWebアプリで対話的に可視化・分析するツール。",
+   "url": "https://github.com/man-group/dtale"
+  },
+  {
+   "owner": "matplotlib",
+   "repo": "mplfinance",
+   "category": "viz",
+   "lang": "Python",
+   "license": "BSD-3",
+   "desc_ja": "matplotlib公式の金融チャートライブラリ。ローソク足・出来高を簡単に描画。",
+   "url": "https://github.com/matplotlib/mplfinance"
+  },
+  {
+   "owner": "plotly",
+   "repo": "plotly.py",
+   "category": "viz",
+   "lang": "Python",
+   "license": "MIT",
+   "desc_ja": "インタラクティブ可視化の定番。金融ダッシュボードのローソク足描画にも広く使われる。",
+   "url": "https://github.com/plotly/plotly.py"
+  },
+  {
+   "owner": "tradingview",
+   "repo": "lightweight-charts",
+   "category": "viz",
+   "lang": "TypeScript",
+   "license": "Apache-2.0",
+   "used_in_app": true,
+   "desc_ja": "TradingView公式の軽量金融チャートライブラリ。本アプリのローソク足チャート描画に使用。",
+   "url": "https://github.com/tradingview/lightweight-charts"
+  }
+ ]
+}
