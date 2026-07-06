@@ -1,0 +1,35 @@
+{
+  "hooks": {
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -c '{ts: (now | todate), event: .hook_event_name, agent: (.agent_type // null), agent_id: (.agent_id // null)}' >> \"$CLAUDE_PROJECT_DIR/.claude/subagent-activity.jsonl\" 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -c '{ts: (now | todate), event: .hook_event_name, agent: (.agent_type // null), agent_id: (.agent_id // null)}' >> \"$CLAUDE_PROJECT_DIR/.claude/subagent-activity.jsonl\" 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Task|Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -c '{ts: (now | todate), event: \"SubagentPrompt\", tool: .tool_name, agent: (.tool_input.subagent_type // \"general-purpose\"), description: (.tool_input.description // null), prompt: ((.tool_input.prompt // \"\") | .[0:500])}' >> \"$CLAUDE_PROJECT_DIR/.claude/subagent-activity.jsonl\" 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
