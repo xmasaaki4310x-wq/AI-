@@ -1,0 +1,129 @@
+/* Claude Code 投資シミュレーター — stock-appと同一のダークテーマトークン */
+:root {
+  --bg: #0d0f13;
+  --surface: #16181d;
+  --surface-2: #1d2026;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f2f3f5;
+  --text-2: #b8bcc4;
+  --muted: #8a8f98;
+  --grid: #262a31;
+  --up-text: #2eb82e;
+  --down-text: #e66767;
+  --s1: #3987e5;
+  --baseline: #8a8f98;
+  --warn-bg: #3a2b10;
+  --warn-border: #c98500;
+  --radius: 10px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  font-size: 14px; line-height: 1.6;
+}
+a { color: var(--s1); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px 60px; }
+
+header.site { border-bottom: 1px solid var(--border); background: var(--surface); }
+header.site .bar {
+  max-width: 1080px; margin: 0 auto; padding: 12px 20px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.logo { font-size: 17px; font-weight: 700; }
+.logo .accent { color: var(--s1); }
+nav.top { display: flex; gap: 14px; margin-left: auto; font-size: 13px; }
+nav.top a { color: var(--text-2); }
+nav.top a.active { color: var(--text); font-weight: 600; }
+
+.meta-line { color: var(--muted); font-size: 12px; margin: 14px 0 0; }
+.banner {
+  margin: 16px 0 0; padding: 10px 14px; border-radius: var(--radius);
+  background: var(--warn-bg); border: 1px solid var(--warn-border);
+  color: #f0d9ae; font-size: 13px;
+}
+
+section { margin-top: 34px; }
+h2 { font-size: 18px; margin: 0 0 4px; font-weight: 700; }
+.section-desc { color: var(--text-2); font-size: 13px; margin: 0 0 14px; }
+
+/* 統計タイル */
+.tiles { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.tile {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.tile .label { color: var(--text-2); font-size: 12px; }
+.tile .value { font-size: 24px; font-weight: 650; }
+.tile .sub { font-size: 12px; color: var(--muted); }
+.delta.up { color: var(--up-text); }
+.delta.down { color: var(--down-text); }
+.delta.flat { color: var(--muted); }
+
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px;
+}
+.chart-legend {
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+  font-size: 12px; color: var(--text-2); margin-bottom: 8px;
+}
+.chart-legend .swatch { width: 14px; height: 3px; border-radius: 2px; display: inline-block; margin-right: 5px; }
+#chart-equity { height: 280px; }
+
+/* テーブル */
+.table-scroll { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+table.data {
+  border-collapse: collapse; width: 100%; min-width: 640px;
+  background: var(--surface); font-size: 12.5px;
+}
+table.data th, table.data td {
+  padding: 8px 10px; text-align: right; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+table.data th { color: var(--muted); font-weight: 600; background: var(--surface-2); }
+table.data th:first-child, table.data td:first-child { text-align: left; }
+table.data td.num { font-variant-numeric: tabular-nums; }
+table.data td.reason { white-space: normal; min-width: 260px; text-align: left; color: var(--text-2); }
+.side-badge {
+  display: inline-block; padding: 0 8px; border-radius: 999px;
+  font-size: 11px; font-weight: 700;
+}
+.side-badge.buy { background: rgba(12,163,12,0.15); color: var(--up-text); }
+.side-badge.sell { background: rgba(208,59,59,0.15); color: var(--down-text); }
+
+/* 判断ログ */
+.decision {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 16px; margin-bottom: 10px;
+}
+.decision .head {
+  display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+  cursor: pointer;
+}
+.decision .date { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.decision .summary { font-weight: 650; }
+.decision .detail {
+  display: none; margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid var(--border);
+  color: var(--text-2); font-size: 13px; white-space: pre-wrap;
+}
+.decision.open .detail { display: block; }
+.decision .toggle-hint { margin-left: auto; color: var(--muted); font-size: 11px; }
+
+/* ルール表 */
+.rules { color: var(--text-2); font-size: 13px; }
+.rules dt { color: var(--text); font-weight: 600; margin-top: 10px; }
+.rules dd { margin: 2px 0 0; }
+
+footer.site {
+  margin-top: 48px; border-top: 1px solid var(--border);
+  color: var(--muted); font-size: 12px; padding-top: 18px;
+}
+@media (max-width: 640px) {
+  .tiles { grid-template-columns: 1fr 1fr; }
+  #chart-equity { height: 220px; }
+}

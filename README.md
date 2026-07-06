@@ -17,6 +17,16 @@ stockstats・backtesting.py・quantstats・lightweight-charts)を実際に使っ
 - ダッシュボード: https://xmasaaki4310x-wq.github.io/AI-/stock-app/
 - データは `.github/workflows/update-stock-data.yml` で定期自動更新できます。
 
+## 🤖 Claude Code 投資シミュレーター
+
+`sim/` に、Claude Codeが仮想資金・毎月1万円積立で毎営業日売買判断を行う
+ペーパートレード実験を収録しています。売買履歴と判断理由はSQLite3
+(`sim/db/paper.db`)に記録され、UIで確認できます。詳細は
+[sim/README.md](sim/README.md) を参照してください。
+
+- シミュレーターUI: https://xmasaaki4310x-wq.github.io/AI-/sim/
+- 価格データは `.github/workflows/sim-daily.yml` が毎営業日朝に自動取得します。
+
 ## 更新の仕組み
 
 レポートは `tools/gen_report.py` で生成します。ニュースの収集・和訳・スコア付けは
