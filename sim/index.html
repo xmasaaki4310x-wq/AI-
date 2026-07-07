@@ -3,17 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Claude Code 投資シミュレーター(ペーパートレード)</title>
+<title>Claude Code 投資シミュレーター — 運用実験日誌</title>
 <meta name="description" content="Claude Codeが仮想資金・月1万円積立で毎営業日売買判断するペーパートレード実験。売買履歴と判断理由をSQLiteに記録">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/sim.css">
 </head>
 <body>
 
 <header class="site">
   <div class="bar">
-    <span class="logo">🤖 Claude Code <span class="accent">投資シミュレーター</span></span>
+    <span class="logo">Claude Code <span class="accent">運用実験日誌</span></span>
     <nav class="top">
-      <a href="index.html" class="active">シミュレーター</a>
+      <a href="index.html" class="active">日誌</a>
       <a href="../stock-app/index.html">マーケット分析</a>
       <a href="../index.html">AIニュース</a>
     </nav>
@@ -24,25 +27,38 @@
   <p class="meta-line" id="meta-line">読み込み中…</p>
   <div id="banner"></div>
 
-  <!-- サマリー -->
+  <!-- ヒーロー: 通帳の最新行 -->
+  <div class="hero" id="hero">
+    <div class="stamp" id="stamp" aria-hidden="true">
+      <span class="s-date" id="stamp-date">–</span>
+      <span class="s-word">記帳</span>
+    </div>
+    <p class="eyebrow">PAPER TRADING — 仮想マネー実験</p>
+    <p class="headline-label">資産総額</p>
+    <div class="equity" id="hero-equity">–</div>
+    <div class="ledger" id="hero-ledger"></div>
+    <p class="exp-meta" id="hero-meta"></p>
+  </div>
+
+  <!-- 最新の判断 -->
   <section>
-    <h2>実験サマリー</h2>
-    <p class="section-desc">
-      仮想資金・毎月1万円積立で、Claude Codeが毎営業日朝に売買を判断するペーパートレード実験です。
-      リアルマネーは一切使いません。手数料は実在の証券会社の料金体系
-      (SBI証券ゼロ革命・S株=0円、bitFlyer取引所現物=0.15%)を適用しています。
-    </p>
-    <div class="tiles" id="summary-tiles"></div>
+    <h2>本日の判断</h2>
+    <p class="section-desc">AIファンドマネージャー(Claude Code)が毎営業日朝に記す運用日誌。売買しない判断も記録します。</p>
+    <div class="journal" id="latest-journal">
+      <p class="j-date" id="j-date"></p>
+      <p class="j-summary" id="j-summary">読み込み中…</p>
+      <div class="j-detail" id="j-detail"></div>
+    </div>
   </section>
 
   <!-- 資産推移 -->
   <section>
     <h2>資産推移</h2>
-    <p class="section-desc">資産総額(青)と累計入金額=元本(グレー)。差が損益です。</p>
+    <p class="section-desc">資産総額(藍)と累計入金額=元本(点線基準)。差が運用の成果です。</p>
     <div class="card">
       <div class="chart-legend">
-        <span><span class="swatch" style="background:#3987e5"></span>資産総額</span>
-        <span><span class="swatch" style="background:#8a8f98"></span>累計入金(元本)</span>
+        <span><span class="swatch" style="background:#2b5a7a"></span>資産総額</span>
+        <span><span class="swatch" style="background:#9aa8a0"></span>累計入金(元本)</span>
       </div>
       <div id="chart-equity"></div>
     </div>
@@ -63,9 +79,9 @@
 
   <!-- 売買履歴 -->
   <section>
-    <h2>売買履歴(Claudeの判断理由付き)</h2>
+    <h2>売買の記録</h2>
     <p class="section-desc">
-      全取引はSQLite3データベースに記録されています:
+      全取引は判断理由とともにSQLite3データベースへ記帳:
       <a href="db/paper.db" download>paper.db をダウンロード</a>
     </p>
     <div class="table-scroll">
@@ -78,25 +94,24 @@
     </div>
   </section>
 
-  <!-- 判断ログ -->
+  <!-- 過去の判断 -->
   <section>
-    <h2>日次判断ログ</h2>
-    <p class="section-desc">売買しなかった日(HOLD)も含め、Claudeの判断を毎日記録します。クリックで全文を表示。</p>
+    <h2>過去の判断</h2>
     <div id="decisions"></div>
   </section>
 
   <!-- ルール -->
   <section>
-    <h2>シミュレーションのルール</h2>
+    <h2>実験の条件</h2>
     <dl class="rules">
       <dt>資金</dt>
       <dd>仮想資金のみ。毎月最初の営業日に¥10,000を自動入金(現実的な少額積立を想定)。</dd>
       <dt>売買判断</dt>
-      <dd>毎営業日朝(JST 9:00頃)、定時トリガーで起動したClaude Codeセッションが最新の終値・テクニカル指標を分析して判断。判断理由は必ずDBに記録。</dd>
+      <dd>毎営業日朝(JST 9:00頃)、定時トリガーで起動したClaude Codeセッションが最新の終値・テクニカル指標・ニュースを分析して判断。判断理由の記帳は必須。</dd>
       <dt>執行モデル</dt>
       <dd>直近終値で約定。単元未満株(S株)の約定は現実にも1日数回の寄付タイミングのため、日次終値モデルは実際のS株積立とほぼ同じ粒度。</dd>
       <dt>手数料(実在の料金体系)</dt>
-      <dd>国内株式・ETF: 0円(SBI証券「ゼロ革命」+S株。報告書の全面電子交付が条件) / ビットコイン: 約定金額の0.15%(bitFlyer Lightning 取引所現物、30日取引量50BTC未満ティア)。</dd>
+      <dd>国内株式・ETF: 0円(SBI証券「ゼロ革命」+S株。報告書の全面電子交付が条件) / ビットコイン: 約定金額の0.15%(bitFlyer Lightning 取引所現物、30日取引量50BTC未満)。</dd>
       <dt>対象(12銘柄)</dt>
       <dd id="universe-list">読み込み中…</dd>
       <dt>データ</dt>
