@@ -1,1 +1,1 @@
-{"cash":10000.0,"invested":10000.0,"positions":[],"history":[{"date":"2026-07-06","cash":10000.0,"positions_value":0.0,"equity":10000.0,"invested":10000.0}],"deposits":[{"date":"2026-07-06","amount":10000.0,"note":"2026-07 月次積立(初回)"}]}
+{"cash":10000.0,"invested":10000.0,"open_pnl":0.0,"realized_pnl":0.0,"positions":[],"history":[{"date":"2026-07-06","cash":10000.0,"positions_value":0.0,"equity":10000.0,"invested":10000.0}],"deposits":[{"date":"2026-07-06","amount":10000.0,"note":"2026-07 月次積立(初回)"}]}
