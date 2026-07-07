@@ -3,71 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Claude Code 投資シミュレーター(ペーパートレード)</title>
+<title>Claude Code 投資シミュレーター — マーケットデスク</title>
 <meta name="description" content="Claude Codeが仮想資金・月1万円積立で毎営業日売買判断するペーパートレード実験。売買履歴と判断理由をSQLiteに記録">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/sim.css">
 </head>
 <body>
 
 <header class="site">
   <div class="bar">
-    <span class="logo">🤖 Claude Code <span class="accent">投資シミュレーター</span></span>
+    <span class="logo">🤖 Claude Code <span class="accent">Market Desk</span></span>
+    <span class="live-badge" id="live-badge">PAPER</span>
     <nav class="top">
-      <a href="index.html" class="active">シミュレーター</a>
+      <a href="index.html" class="active">トレード台</a>
       <a href="../stock-app/index.html">マーケット分析</a>
       <a href="../index.html">AIニュース</a>
     </nav>
   </div>
 </header>
 
+<!-- ティッカーテープ -->
+<div class="tape-wrap"><div class="tape" id="tape"></div></div>
+
 <div class="wrap">
   <p class="meta-line" id="meta-line">読み込み中…</p>
   <div id="banner"></div>
 
-  <!-- サマリー -->
+  <!-- 統計行 -->
+  <div class="stats">
+    <div class="stat">
+      <span class="label">総資産 TOTAL EQUITY</span>
+      <div class="value" id="st-equity">–</div>
+      <span class="sub" id="st-equity-sub"></span>
+    </div>
+    <div class="stat">
+      <span class="label">通算損益 TOTAL RETURN</span>
+      <div class="value" id="st-total-pnl">–</div>
+      <span class="sub" id="st-total-pnl-sub"></span>
+    </div>
+    <div class="stat">
+      <span class="label">含み損益 OPEN P&amp;L</span>
+      <div class="value" id="st-open-pnl">–</div>
+      <span class="sub" id="st-open-pnl-sub"></span>
+    </div>
+    <div class="stat">
+      <span class="label">確定損益 REALIZED P&amp;L</span>
+      <div class="value" id="st-realized">–</div>
+      <span class="sub" id="st-realized-sub"></span>
+    </div>
+  </div>
+
+  <!-- マーケットデスク -->
   <section>
-    <h2>実験サマリー</h2>
-    <p class="section-desc">
-      仮想資金・毎月1万円積立で、Claude Codeが毎営業日朝に売買を判断するペーパートレード実験です。
-      リアルマネーは一切使いません。手数料は実在の証券会社の料金体系
-      (SBI証券ゼロ革命・S株=0円、bitFlyer取引所現物=0.15%)を適用しています。
-    </p>
-    <div class="tiles" id="summary-tiles"></div>
+    <div class="sec-head">
+      <span class="eyebrow">Market Desk — Live Tape</span>
+      <h2>トレード台</h2>
+      <span class="right">銘柄をクリックでローソク足にフォーカス</span>
+    </div>
+    <div class="desk">
+      <div class="panel">
+        <div class="focus-head">
+          <span class="f-name" id="f-name">–</span>
+          <span class="f-price" id="f-price">–</span>
+          <span class="f-chg" id="f-chg"></span>
+          <span class="f-date" id="f-date"></span>
+        </div>
+        <div id="chart-focus"></div>
+      </div>
+      <div class="panel">
+        <div class="watchlist" id="watchlist"></div>
+      </div>
+    </div>
   </section>
 
-  <!-- 資産推移 -->
+  <!-- 資産推移 + 配分 -->
   <section>
-    <h2>資産推移</h2>
-    <p class="section-desc">資産総額(青)と累計入金額=元本(グレー)。差が損益です。</p>
-    <div class="card">
-      <div class="chart-legend">
-        <span><span class="swatch" style="background:#3987e5"></span>資産総額</span>
-        <span><span class="swatch" style="background:#8a8f98"></span>累計入金(元本)</span>
+    <div class="sec-head">
+      <span class="eyebrow">Equity Curve — Since Inception</span>
+      <h2>資産推移と配分</h2>
+      <span class="right" id="eq-note"></span>
+    </div>
+    <div class="duo">
+      <div class="panel">
+        <div class="chart-legend">
+          <span><span class="swatch" style="background:#3987e5"></span>資産総額</span>
+          <span><span class="swatch" style="background:#6d7681"></span>累計入金(元本)</span>
+        </div>
+        <div id="chart-equity"></div>
       </div>
-      <div id="chart-equity"></div>
+      <div class="panel">
+        <div class="chart-legend"><span>ALLOCATION ・ 資産配分</span></div>
+        <div class="alloc" id="alloc"></div>
+      </div>
     </div>
   </section>
 
   <!-- 保有ポジション -->
   <section>
-    <h2>保有ポジション</h2>
+    <div class="sec-head">
+      <span class="eyebrow">Open Positions</span>
+      <h2>保有ポジション</h2>
+    </div>
     <div class="table-scroll">
       <table class="data">
         <thead><tr>
-          <th>銘柄</th><th>数量</th><th>取得単価</th><th>直近終値</th><th>評価額</th><th>損益率</th>
+          <th>銘柄</th><th>数量</th><th>平均取得</th><th>直近終値</th><th>評価額</th><th>含み損益</th><th>損益率</th>
         </tr></thead>
         <tbody id="positions-body"></tbody>
       </table>
     </div>
   </section>
 
+  <!-- AI判断 -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">AI Fund Manager — Daily Note</span>
+      <h2>本日の判断</h2>
+    </div>
+    <div class="journal" id="latest-journal">
+      <p class="j-date" id="j-date"></p>
+      <p class="j-summary" id="j-summary">読み込み中…</p>
+      <div class="j-detail" id="j-detail"></div>
+    </div>
+  </section>
+
   <!-- 売買履歴 -->
   <section>
-    <h2>売買履歴(Claudeの判断理由付き)</h2>
-    <p class="section-desc">
-      全取引はSQLite3データベースに記録されています:
-      <a href="db/paper.db" download>paper.db をダウンロード</a>
-    </p>
+    <div class="sec-head">
+      <span class="eyebrow">Trade Blotter</span>
+      <h2>売買履歴</h2>
+      <span class="right"><a href="db/paper.db" download>SQLite DB (paper.db) をダウンロード</a></span>
+    </div>
     <div class="table-scroll">
       <table class="data">
         <thead><tr>
@@ -78,29 +146,34 @@
     </div>
   </section>
 
-  <!-- 判断ログ -->
+  <!-- 過去の判断 -->
   <section>
-    <h2>日次判断ログ</h2>
-    <p class="section-desc">売買しなかった日(HOLD)も含め、Claudeの判断を毎日記録します。クリックで全文を表示。</p>
+    <div class="sec-head">
+      <span class="eyebrow">Decision Log</span>
+      <h2>過去の判断</h2>
+    </div>
     <div id="decisions"></div>
   </section>
 
   <!-- ルール -->
   <section>
-    <h2>シミュレーションのルール</h2>
+    <div class="sec-head">
+      <span class="eyebrow">Experiment Rules</span>
+      <h2>実験の条件</h2>
+    </div>
     <dl class="rules">
       <dt>資金</dt>
-      <dd>仮想資金のみ。毎月最初の営業日に¥10,000を自動入金(現実的な少額積立を想定)。</dd>
+      <dd>仮想資金のみ。毎月最初の営業日に¥10,000を自動入金(現実的な少額積立を想定)。リアルマネーは一切使いません。</dd>
       <dt>売買判断</dt>
-      <dd>毎営業日朝(JST 9:00頃)、定時トリガーで起動したClaude Codeセッションが最新の終値・テクニカル指標を分析して判断。判断理由は必ずDBに記録。</dd>
+      <dd>毎営業日朝(JST 9:00頃)、定時トリガーで起動したClaude Codeセッションが最新の終値・テクニカル指標・ニュースを分析して判断。判断理由の記録は必須。</dd>
       <dt>執行モデル</dt>
       <dd>直近終値で約定。単元未満株(S株)の約定は現実にも1日数回の寄付タイミングのため、日次終値モデルは実際のS株積立とほぼ同じ粒度。</dd>
       <dt>手数料(実在の料金体系)</dt>
-      <dd>国内株式・ETF: 0円(SBI証券「ゼロ革命」+S株。報告書の全面電子交付が条件) / ビットコイン: 約定金額の0.15%(bitFlyer Lightning 取引所現物、30日取引量50BTC未満ティア)。</dd>
+      <dd>国内株式・ETF: 0円(SBI証券「ゼロ革命」+S株。報告書の全面電子交付が条件) / ビットコイン: 約定金額の0.15%(bitFlyer Lightning 取引所現物、30日取引量50BTC未満)。</dd>
       <dt>対象(12銘柄)</dt>
       <dd id="universe-list">読み込み中…</dd>
       <dt>データ</dt>
-      <dd>GitHub Actionsが毎営業日朝、yfinanceで日足終値を取得しSQLiteへ保存。</dd>
+      <dd>GitHub Actionsが毎営業日朝、yfinanceで日足を取得しSQLite3データベースへ保存。</dd>
     </dl>
   </section>
 

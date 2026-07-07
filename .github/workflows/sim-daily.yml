@@ -46,4 +46,6 @@ jobs:
             exit 0
           fi
           git commit -m "シミュレーター日次バッチ $(date -u +%Y-%m-%d)"
+          # 他ワークフローと同時実行した場合の競合対策
+          git pull --rebase origin gh-pages
           git push
