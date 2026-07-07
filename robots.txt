@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /stock-app/
+Disallow: /sim/
