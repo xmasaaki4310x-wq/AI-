@@ -1,0 +1,4 @@
+# シミュレーターエンジンが使用するライブラリ
+yfinance>=1.0        # 実データ取得 (daily.py)
+pandas>=2.0
+stockstats>=0.6      # テクニカル指標計算 (indicators.py)
