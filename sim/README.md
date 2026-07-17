@@ -13,10 +13,14 @@ Claude Code が**仮想資金・毎月1万円積立**で毎営業日売買判断
    └─ yfinanceで12銘柄の実終値を取得 → SQLiteへ保存
       月初なら¥10,000入金 → 時価評価 → UI用JSONエクスポート → コミット
 
-毎営業日 JST 09:00  定時トリガー (Claude Code Routine)
-   └─ 新しいClaude Codeセッションが起動し、AGENT.md の手順で
-      市況分析 → 売買判断 → trade.py で執行 → 判断理由をDBに記録 → コミット
+毎営業日 JST 09:00  定時トリガー (Claude Code Routine, 自己バインド方式)
+   └─ セッションが再開し、AGENT.md の手順で
+      市況分析(indicators.py) → 損益ラダーに基づく判断 → trade.pyで執行
+      → 判断理由をDBに記録 → コミット
 ```
+
+判断ルールは投資歴70年の個人投資家・藤本茂氏の相場観を参考にした
+含み損益ベースの段階的ラダー(詳細は `AGENT.md` 参照)。
 
 ## ルール(実験条件)
 
@@ -45,7 +49,9 @@ sim/
     ├── setup_db.py          # 初期化 (ユニバース12銘柄)
     ├── trade.py             # 売買CLI (検証付き: 現金・ロット・保有数量)
     ├── daily.py             # 日次バッチ (価格取得・入金・時価評価)
-    └── export.py            # SQLite→JSON
+    ├── indicators.py        # テクニカル指標スナップショット (RSI/MACD/出来高比等)
+    ├── export.py            # SQLite→JSON
+    └── requirements.txt     # yfinance / pandas / stockstats
 ```
 
 ## 手動での操作
